@@ -45,14 +45,14 @@ const JunoBlogContent = () => {
           What is Juno?
         </h2>
         <p className="my-4">
-          Juno allows users to easily customize, create, and interact with tailor made AI. Interaction occurs within the user's web browser via the Juno Chrome Extension. It's a comprehensive platform designed to streamline AI customization and interaction, making advanced AI technology accessible and user-friendly.
+          Juno allows users to easily customize, create, and interact with tailor made AI. Interaction occurs within the user&apos;s web browser via the Juno Chrome Extension. It&apos;s a comprehensive platform designed to streamline AI customization and interaction, making advanced AI technology accessible and user-friendly.
         </p>
 
         <h2 className="text-2xl font-RubikExtraBold my-5">
           Modularizing AI
         </h2>
         <p className="my-4">
-          Juno modularizes the creation of AI by seperating the creation process into 4 key components, the large language model, the pompt used to query the large langauge model, the AI's voice (using Elevenlabs text-to-speech), and 
+          Juno modularizes the creation of AI by seperating the creation process into 4 key components, the large language model, the pompt used to query the large langauge model, the AI&apos;s voice (using Elevenlabs text-to-speech), and 
           extensions which give the profile external capabilities that are not inherit to the large language model. <br />{" "} <br />{" "}
 
           This approach allows users to mix-and-match different components to truly create a fully cusomtizable and tailord AI experience.
@@ -73,7 +73,7 @@ const JunoBlogContent = () => {
         </div>
 
         <p className="my-4">
-          Juno's Quick Start guide provides a simple 3-step tutorial to walk users through selecting and integrating their own personalized AI in minutes.  <br />{" "} <br />{" "}
+          Juno&apos;s Quick Start guide provides a simple 3-step tutorial to walk users through selecting and integrating their own personalized AI in minutes.  <br />{" "} <br />{" "}
 
           This process entails the user selecting a profle from the library, installing the Juno Chrome Extension, and then interacting with Juno by pressing their assigned shortcut within the Juno Chrome Extension.
         </p>

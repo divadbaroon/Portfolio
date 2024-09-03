@@ -44,7 +44,7 @@ const LimoTrackBlogContent = () => {
           </h2>
 
           <p className="my-4">
-            Limotrack is a website designed for TNT Company, a local car company, to showcase their vehicles and streamline their reservation process. The platform aims to enhance the company's online presence and improve customer experience by providing a convenient way to view available vehicles and make reservations.
+            Limotrack is a website designed for TNT Company, a local car company, to showcase their vehicles and streamline their reservation process. The platform aims to enhance the company&apos;s online presence and improve customer experience by providing a convenient way to view available vehicles and make reservations.
           </p>
 
           <p className="my-4">
@@ -76,7 +76,7 @@ const LimoTrackBlogContent = () => {
           </div>
 
           <p>
-            LimoTrack was intended to provide a clean and simple platform for user's to view TNT Limousine's fleet of vehicles. <br />{" "} <br />{" "}
+            LimoTrack was intended to provide a clean and simple platform for user&apos;s to view TNT Limousine&apos;s fleet of vehicles. <br />{" "} <br />{" "}
 
             As well as quickly see important information about the vehicle such as price/ hour, vehicle type, transmission type, passenger capacity, 
             and fuel tank capacity

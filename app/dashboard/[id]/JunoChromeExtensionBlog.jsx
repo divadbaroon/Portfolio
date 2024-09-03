@@ -60,7 +60,7 @@ const JunoChromeExtensionBlogContent = () => {
 
           <p>
             Once the shortcut is held, speech recognition begins. Speech recognition entails audio recording via Web Audio API
-            via microphone input. The recorded data is then sent to Google Cloud Speech-to-Text API, in which the user's speech
+            via microphone input. The recorded data is then sent to Google Cloud Speech-to-Text API, in which the user&apos;s speech
             is returned as a string.
           </p>
                     
@@ -69,11 +69,11 @@ const JunoChromeExtensionBlogContent = () => {
           </h2>
 
           <p>
-            The user's intent is deteced using Azure's Conversational language understanding service
-            which takes a query in the form of text (in our case the user's speech) and returning the top intent, top entity, and 
+            The user&apos;s intent is deteced using Azure&apos;s Conversational language understanding service
+            which takes a query in the form of text (in our case the user&apos;s speech) and returning the top intent, top entity, and 
             confidence level.  <br />{" "} <br />{" "}
 
-            For example, given the user's speech: "Open Google" <br />{" "} <br />{" "}
+            For example, given the user&apos;s speech: "Open Google" <br />{" "} <br />{" "}
 
             The top intent would be: "Open Webpage" <br />{" "}
             The top entity would be: "Google" <br />{" "}
@@ -85,9 +85,9 @@ const JunoChromeExtensionBlogContent = () => {
           </h2>
 
           <p>
-            After the user's speech has been retrieved, the user's speech is used to query the large language model.
-            As well, the user's selected prompt via their selected profile is used to provide the foundational context 
-            and background information to the large language model. Specifcally the prompt specifies the large language model's
+            After the user&apos;s speech has been retrieved, the user&apos;s speech is used to query the large language model.
+            As well, the user&apos;s selected prompt via their selected profile is used to provide the foundational context 
+            and background information to the large language model. Specifcally the prompt specifies the large language model&apos;s
             personality, context, interaction guidelines, background, and temperature (variability in responses)
           </p>
 
@@ -96,8 +96,8 @@ const JunoChromeExtensionBlogContent = () => {
           </h2>
 
           <p>
-            After the large language model's response is retrieved, Elevenlabs text-to-speech is performed on it using 
-            the user's selected voice in their profile.
+            After the large language model&apos;s response is retrieved, Elevenlabs text-to-speech is performed on it using 
+            the user&apos;s selected voice in their profile.
           </p>
 
           <h2 className="text-2xl font-RubikExtraBold my-5">User Interface</h2>

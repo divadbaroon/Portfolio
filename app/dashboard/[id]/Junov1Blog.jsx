@@ -54,7 +54,7 @@ const Junov1BlogContent = () => {
         <ul className="list-disc list-inside my-4 space-y-2">
           <li>Azure Speech Services for speech recognition</li>
           <li>Azure CLU for intent recognition</li>
-          <li>OpenAI's GPT-3.5-Turbo for dynamic, human-like interactions</li>
+          <li>OpenAI&apos;s GPT-3.5-Turbo for dynamic, human-like interactions</li>
           <li>Elevenlabs for realistic text-to-speech conversion</li>
           <li>Customizable packages and profiles for tailored AI behavior</li>
           <li>CLI-based interaction for developers and power users</li>
@@ -68,7 +68,7 @@ const Junov1BlogContent = () => {
         </p>
         <ol className="list-decimal list-inside my-4 space-y-2">
           <li>Language Model: Utilizing GPT-3.5-Turbo for natural language understanding and generation</li>
-          <li>Prompts: Customizable instructions to guide the AI's responses</li>
+          <li>Prompts: Customizable instructions to guide the AI&apos;s responses</li>
           <li>Voice: Integration with Elevenlabs for lifelike text-to-speech</li>
           <li>Extensions: Additional capabilities beyond the core language model functionality</li>
         </ol>
