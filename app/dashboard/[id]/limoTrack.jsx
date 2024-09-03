@@ -97,7 +97,7 @@ const LimoTrackBlogContent = () => {
           </div>
 
           <p>
-            upon clicking "More Information" the use can see a detailed description of the vehicle as well as the ability to reserve it.
+            upon clicking &quot;More Information&quot; the use can see a detailed description of the vehicle as well as the ability to reserve it.
           </p>
 
           <h2 className="text-2xl font-RubikExtraBold my-5">Conclusion</h2>

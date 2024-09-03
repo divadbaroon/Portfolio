@@ -73,10 +73,10 @@ const JunoChromeExtensionBlogContent = () => {
             which takes a query in the form of text (in our case the user&apos;s speech) and returning the top intent, top entity, and 
             confidence level.  <br />{" "} <br />{" "}
 
-            For example, given the user&apos;s speech: "Open Google" <br />{" "} <br />{" "}
+            For example, given the user&apos;s speech: &quot;Open Google&quot; <br />{" "} <br />{" "}
 
-            The top intent would be: "Open Webpage" <br />{" "}
-            The top entity would be: "Google" <br />{" "}
+            The top intent would be: &quot;Open Webpage&quot; <br />{" "}
+            The top entity would be: &quot;Google&quot; <br />{" "}
             The confidence level would be: .9 (in which 1 indicates 100% confidence)  <br />{" "}
           </p>
 
