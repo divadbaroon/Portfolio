@@ -47,6 +47,10 @@ function TestimonialTooltip() {
     },
   ];
 
+  const handleIconClick = (url) => {
+    window.open(url, "_blank"); // Opens the link in a new tab
+  };
+
   return (
     <div
       className="flex flex-row items-center gap-x-9  
@@ -59,6 +63,8 @@ function TestimonialTooltip() {
           key={testimonial.name}
           onMouseEnter={() => setHoveredIndex(testimonial.id)}
           onMouseLeave={() => setHoveredIndex(null)}
+          onClick={() => handleIconClick(testimonial.position)} // Add onClick event
+          style={{ cursor: "pointer" }} // Make the icon look clickable
         >
           <AnimatePresence mode="wait">
             {hoveredIndex === testimonial.id && (
