@@ -2,12 +2,9 @@
 
 import React, { useState } from "react";
 import {
-  PiInstagramLogoThin,
-  PiYoutubeLogoThin,
+  PiGithubLogoThin,
   PiLinkedinLogoThin,
 } from "react-icons/pi";
-import { SlFeed } from "react-icons/sl";
-import { LuBox } from "react-icons/lu";
 
 import {
   motion,
@@ -40,7 +37,7 @@ function TestimonialTooltip() {
       id: 1,
       name: "Github",
       position: "https://github.com/divadbaroon",
-      image: <PiYoutubeLogoThin />,
+      image: <PiGithubLogoThin />,
     },
     {
       id: 2,
