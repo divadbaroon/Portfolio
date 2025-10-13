@@ -83,17 +83,14 @@ function Leftpage() {
                 <h1 className="font-RubikExtraBold text-xl  text-neutral-300 mt-3">
                   David Barron
                 </h1>
-                <p className="text-xs font-RubikMedium text-neutral-300 mt-2">
-                  dbarron410@vt.edu 📧
-                </p>
   
                 <div className="flex w-full   ">
                   <div className="flex gap-x-1  text-xs my-4">
                     <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
-                      Azure
+                      NextJS
                     </p>
                     <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
-                      NextJS
+                      Supabase
                     </p>
                     <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
                       ReactJS
@@ -118,26 +115,7 @@ function Leftpage() {
               </div>
             </div>
   
-            <form
-              onSubmit={handleSubmit}
-              className="bg-[#282828] p-1  rounded-md md:flex items-center  justify-between h-9 w-full hidden "
-            >
-              <input
-                value={email}
-                onChange={handleChange}
-                className=" w-36 focus:outline-none bg-transparent text-neutral-400 text-xs placeholder:text-neutral-600 h-full pl-2 placeholder:text-xs placeholder:font-RubikMedium"
-                placeholder="name@email.com"
-                type="text"
-              />
-              <motion.button
-                animate={controls}
-                className="bg-[#696969] h-full p-1 rounded-md text-xs w-20 font-RubikMedium text-neutral-50"
-              >
-                Subscribe
-              </motion.button>
-            </form>
-  
-            <div className="w-full mt-5 text-neutral-300">
+            <div className="w-full mt-5 text-neutral-300 -mt-4">
               <h2 className="font-RubikBold my-4">Bio</h2>
               <p className="text-[12px]  font-RubikRegular my-3 -mt-2">
                 Passionate self-taught developer looking <br /> to apply my knowledge
