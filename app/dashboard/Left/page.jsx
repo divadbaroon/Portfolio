@@ -86,7 +86,7 @@ function Leftpage() {
               </div>
             </div>
 
-            <div className="border border-[#282828] text-neutral-300 my-3" />
+            <div className="border border-[#282828] text-neutral-300 my-1" />
   
             <div className="w-full text-neutral-300">
               <h2 className="font-RubikBold my-4">Bio</h2>
@@ -109,7 +109,7 @@ function Leftpage() {
   
               <div className="border border-[#282828] text-neutral-300 my-6" />
   
-              <div className="my-4 ">
+              <div className="my-4 -mt-1">
                 <h1 className="font-RubikRegular">Work History</h1>
                 <div className="mt-7 flex  justify-between">
                   <div className="flex gap-x-3">
