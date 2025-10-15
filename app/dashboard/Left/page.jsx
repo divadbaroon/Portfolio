@@ -140,8 +140,7 @@ function Leftpage() {
             <div className="w-full mt-5 text-neutral-300">
               <h2 className="font-RubikBold my-4">Bio</h2>
               <p className="text-[12px]  font-RubikRegular my-3 -mt-2">
-                Passionate self-taught developer looking <br /> to apply my knowledge
-                and expertise to <br /> real world projects to help make a difference.{" "}
+                Masters student at Virginia Tech researching how AI <br /> can be leveraged to provide students with personalized <br /> and engaging learning experiences.{" "}
               </p>
   
               <div className="mt-6 flex justify-between text-sm">
