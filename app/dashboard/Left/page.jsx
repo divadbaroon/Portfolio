@@ -90,16 +90,16 @@ function Leftpage() {
                 <div className="flex w-full   ">
                   <div className="flex gap-x-1  text-xs my-4">
                     <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
-                      Azure
-                    </p>
-                    <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
                       NextJS
                     </p>
                     <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
-                      ReactJS
+                      React
+                    </p>
+                    <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
+                      TypeScript
                     </p>
                     <p className=" bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold shrink-0 ">
-                      Tailwind CSS
+                      Supabase
                     </p>
                     <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
                       Git
