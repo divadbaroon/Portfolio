@@ -110,7 +110,7 @@ function Leftpage() {
   
               <div className="flex gap-x-1 w-full h-fit ml-4">
                 <Link href="https://github.com/divadbaroon" target="_blank" rel="noopener noreferrer">
-                  <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center">
+                  <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center -ml-3">
                     <PiGithubLogoLight className="text-neutral-100" />
                   </div>
                 </Link>
