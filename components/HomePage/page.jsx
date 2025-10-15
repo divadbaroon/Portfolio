@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { PiCodeThin } from "react-icons/pi";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 function Homepage() {
@@ -21,75 +20,114 @@ function Homepage() {
       }}
       className="w-full lg:w-fit "
     >
-      <div className="  bg-[#1C1C1C] lg:bg-transparent rounded-2xl ">
+      <div className="bg-[#1C1C1C] lg:bg-transparent rounded-2xl">
         <div>
-          <div className="flex gap-x-6 p-4">
-            <PiCodeThin className="text-6xl text-neutral-50" />
-
+          <div className="p-4">
             <div>
               <h1 className="text-2xl font-RubikMedium text-neutral-300">
-                Semicolon,{" "}
-                <span className="text-sm text-neutral-400">A Dev Blog</span>
+                Hi, I'm David!
               </h1>
-              <p className="max-w-sm text-neutral-400 text-sm">
-                I love to design and code ideas that interest me, and <br />{" "}
-                occasionally i write about them
+              <p className="max-w-sm text-neutral-400 text-sm mt-2">
+                I love building AI-powered projects that provide personalized <br />
+                and proactive learning experiences for students, and <br />
+                occasionally I write about them
               </p>
             </div>
           </div>
 
           <div className="border border-neutral-700 my-5" />
 
-           {/* without image */}
+          <div className="mt-6 bg-[#1C1C1C] rounded-lg text-neutral-400">
+            <Link href={"/dashboard/sophia"}>
+              <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
+                <div className="flex items-center gap-x-3">
+                  <Image
+                    src="/sophia-thumb.jpg"
+                    width={120}
+                    height={120}
+                    className="rounded-lg object-cover"
+                    alt="Sophia AI Tutoring System"
+                  />
+                  <div>
+                    <span className="text-sm">Oct 2024 - Present</span>
+                    <h2 className="text-sm font-RubikMedium">
+                      Sophia
+                    </h2>
+                    <p className="text-xs text-neutral-500 mt-1">
+                      Multimodal AI tutoring system using concept mapping
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Link>
 
-           <div className="mt-6  bg-[#1C1C1C] rounded-lg text-neutral-400">
-           <Link href={"/dashboard/juno-chrome-extension"}>
-            <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
-              <div className="  flex items-center gap-x-3">
-                <div>
-                  <span className="text-sm">Aug 15, 2024</span>
-                  <h2 className="text-sm font-RubikMedium">
-                    Juno Chrome Extension
-                  </h2>
+            <Link href={"/dashboard/dynamite"}>
+              <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
+                <div className="flex items-center gap-x-3">
+                  <Image
+                    src="/dynamite-thumb.jpg"
+                    width={120}
+                    height={120}
+                    className="rounded-lg object-cover"
+                    alt="Dynamite Discussion Platform"
+                  />
+                  <div>
+                    <span className="text-sm">Oct 2024 - Present</span>
+                    <h2 className="text-sm font-RubikMedium">
+                      Dynamite
+                    </h2>
+                    <p className="text-xs text-neutral-500 mt-1">
+                      Real-time discussion platform with AI-generated summaries
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
             </Link>
+
             <Link href={"/dashboard/juno"}>
-            <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
-              <div className="  flex items-center gap-x-3">
-                <div>
-                  <span className="text-sm">May 15, 2024</span>
-                  <h2 className="text-sm font-RubikMedium">
-                    Juno
-                  </h2>
+              <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
+                <div className="flex items-center gap-x-3">
+                  <Image
+                    src="/juno-thumb.jpg"
+                    width={120}
+                    height={120}
+                    className="rounded-lg object-cover"
+                    alt="Juno Chrome Extension"
+                  />
+                  <div>
+                    <span className="text-sm">May 2024</span>
+                    <h2 className="text-sm font-RubikMedium">
+                      Juno
+                    </h2>
+                    <p className="text-xs text-neutral-500 mt-1">
+                      Chrome extension with configurable LLM agents
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
             </Link>
-            <Link href={"/dashboard/limo-track"}>
-            <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
-              <div className="  flex items-center gap-x-3">
-                <div>
-                  <span className="text-sm">Apr 29, 2024</span>
-                  <h2 className="text-sm font-RubikMedium">
-                    LimoTrack
-                  </h2>
+
+            <Link href={"/dashboard/plotpact"}>
+              <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
+                <div className="flex items-center gap-x-3">
+                  <Image
+                    src="/plotpact-thumb.jpg"
+                    width={120}
+                    height={120}
+                    className="rounded-lg object-cover"
+                    alt="PlotPact"
+                  />
+                  <div>
+                    <span className="text-sm">2024</span>
+                    <h2 className="text-sm font-RubikMedium">
+                      PlotPact
+                    </h2>
+                    <p className="text-xs text-neutral-500 mt-1">
+                      AI-powered interactive storytelling platform
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            </Link>
-            <Link href={"/dashboard/juno-v1"}>
-            <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
-              <div className="  flex items-center gap-x-3">
-                <div>
-                  <span className="text-sm">Dec 15, 2023</span>
-                  <h2 className="text-sm font-RubikMedium">
-                    Junov.1
-                  </h2>
-                </div>
-              </div>
-            </div>
             </Link>
           </div>
         </div>
