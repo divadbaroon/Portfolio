@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { usePathname } from "next/navigation";
 import { HiOutlineDocumentText } from "react-icons/hi";
 
 import TestimonialTooltip from "@/app/TestimonialTooltip/page";
@@ -7,22 +8,32 @@ import { motion } from "framer-motion";
 import Link from 'next/link';
 
 function page() {
+  const pathname = usePathname();
+  const isProjectPage = pathname.includes('/dashboard/');
+
+  const Wrapper = isProjectPage ? 'div' : motion.div;
+  const wrapperProps = isProjectPage 
+    ? {} 
+    : {
+        initial: { y: 10, opacity: 0 },
+        animate: {
+          y: 0,
+          opacity: 1,
+          transition: {
+            duration: 0.5,
+            delay: 0.9,
+            type: "spring",
+            stiffness: 200,
+          },
+        }
+      };
+
   return (
-    <motion.div
-      initial={{ y: 10, opacity: 0 }}
-      animate={{
-        y: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.5,
-          delay: 0.9,
-          type: "spring",
-          stiffness: 200,
-        },
-      }}
-      className="lg:block w-ful lg:w-fit hidden  max-xl:hidden "
+    <Wrapper
+      {...wrapperProps}
+      className="lg:block w-ful lg:w-fit hidden max-xl:hidden"
     >
-      <div className=" md:w-60 w-full rounded-2xl h-fit sticky top-5 ">
+      <div className="md:w-60 w-full rounded-2xl h-fit sticky top-5">
         <div>
           <div className="bg-[#1C1C1C] min-w-min rounded-2xl p-4 border border-neutral-800 h-fit">
             <h2 className="font-RubikBold text-neutral-200">
@@ -82,7 +93,7 @@ function page() {
 
         
       </div>
-    </motion.div>
+    </Wrapper>
   );
 }
 
