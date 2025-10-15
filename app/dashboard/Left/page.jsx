@@ -8,6 +8,7 @@ import {
 import { MdOutlineSecurity } from "react-icons/md";
 import { SiPearson } from "react-icons/si";
 import { BiHealth } from "react-icons/bi";
+import { FaUniversity } from "react-icons/fa";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -111,6 +112,18 @@ function Leftpage() {
               <div className="my-4 ">
                 <h1 className="font-RubikRegular">Work History</h1>
                 <div className="mt-7 flex  justify-between">
+                  <div className="flex gap-x-3">
+                    <FaUniversity className="text-xl" />
+                    <div className="-mt-1">
+                      <h3 className="text-sm font-RubikMedium">Research Assistant</h3>
+                      <p className="text-[9px]">Virginia Tech</p>
+                    </div>
+                  </div>
+                  <small className="text-[9px] text-neutral-300">
+                    Oct 2024 - Present
+                  </small>
+                </div>
+                <div className="my-3 flex  justify-between">
                   <div className="flex gap-x-3">
                     <SiPearson className="text-xl" />
                     <div className="-mt-1">
