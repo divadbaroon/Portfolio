@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
 import { PiArrowLeftThin } from "react-icons/pi";
 import { motion } from "framer-motion";
 import { useParams } from 'next/navigation';
+
+import Sophia from "./Sophia";
+import PlotPact from "./PlotPact";
+import Dynamite from "./Dynamite";
 import JunoChromeExtensionBlogContent from "./JunoChromeExtensionBlog";
-import JunoBlogContent from "./JunoBlog";
-import LimoTrackBlogContent from "./limoTrack";
-import Junov1BlogContent from "./Junov1Blog";
 
 function Page() {
   const params = useParams();
@@ -16,14 +16,14 @@ function Page() {
 
   const renderContent = () => {
     switch(id) {
+      case 'Sophia':
+        return <Sophia />;
+      case 'PlotPact':
+        return <PlotPact />;
+      case 'Dynamite':
+        return <Dynamite />;
       case 'juno-chrome-extension':
         return <JunoChromeExtensionBlogContent />;
-      case 'juno':
-        return <JunoBlogContent />;
-      case 'limo-track':
-        return <LimoTrackBlogContent />;
-      case 'juno-v1':
-        return <Junov1BlogContent />;
       default:
         return <div>Blog post not found</div>;
     }
