@@ -16,13 +16,13 @@ function Page() {
 
   const renderContent = () => {
     switch(id) {
-      case 'Sophia':
+      case 'sophia':
         return <Sophia />;
-      case 'PlotPact':
+      case 'plotpact':
         return <PlotPact />;
-      case 'Dynamite':
+      case 'dynamite':
         return <Dynamite />;
-      case 'juno-chrome-extension':
+      case 'juno':
         return <JunoChromeExtensionBlogContent />;
       default:
         return <div>Blog post not found</div>;
