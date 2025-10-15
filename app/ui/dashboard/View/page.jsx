@@ -7,7 +7,7 @@ import TestimonialTooltip from "@/app/TestimonialTooltip/page";
 import { motion } from "framer-motion";
 import Link from 'next/link';
 
-function page() {
+function Page() {
   const pathname = usePathname();
   const isProjectPage = pathname.includes('/dashboard/');
 
@@ -97,4 +97,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
