@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-import { PiGithubLogoLight } from "react-icons/pi";
-import { SiCss3, SiFramer } from "react-icons/si";
+import { HiOutlineDocumentText } from "react-icons/hi";
 
 import TestimonialTooltip from "@/app/TestimonialTooltip/page";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from 'next/link';
 
 function page() {
@@ -45,28 +44,31 @@ function page() {
             <div className="border border-neutral-700 my-5" />
 
             <div className="text-neutral-400">
-              <h1 className="font-RubikMedium text-neutral-200">Currently learning</h1>
-              <div className="flex items-center gap-x-3 mt-6 hover:bg-neutral-800  p-2 rounded-md ">
-                <div className="bg-neutral-700/50 h-8 w-8 rounded-full flex items-center justify-center">
-                  <PiGithubLogoLight className="text-lg" />
-                </div>
-                <h3 className="text-xs ">
-                Azure Functions
-                </h3>
-              </div>
-              <div className="flex items-center gap-x-3 mt-6 hover:bg-neutral-800  p-2 rounded-md">
-                <div className="bg-neutral-700/50 h-8 w-8 rounded-full flex items-center justify-center">
-                  <SiFramer className="text-lg" />
-                </div>
-                <h3 className="text-xs ">
-                  Framer Motion
-                </h3>
-              </div>
-              <div className="flex items-center gap-x-3 mt-6 hover:bg-neutral-800  p-2 rounded-md">
-                <div className="bg-neutral-700/50 h-8 w-8 rounded-full flex items-center justify-center">
-                  <SiCss3 className="text-lg" />
-                </div>
-                <h3 className="text-xs ">Next.js 13 App Router and Server Components</h3>
+              <h1 className="font-RubikMedium text-neutral-200">Publications</h1>
+              <div className="mt-6">
+                <Link 
+                  href="https://arxiv.org/abs/2507.20137" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:bg-neutral-800 p-2 rounded-md block"
+                >
+                  <div className="flex gap-x-3">
+                    <div className="bg-neutral-700/50 h-8 w-8 rounded-full flex items-center justify-center shrink-0">
+                      <HiOutlineDocumentText className="text-lg" />
+                    </div>
+                    <div>
+                     <h3 className="text-xs font-RubikMedium text-neutral-200">
+                      Dynamite: Real-Time Debriefing Slide Authoring
+                    </h3>
+                    <p className="text-[10px] text-neutral-500 mt-1">
+                      P. Keelawat, D. Barron et al.
+                    </p>
+                    <p className="text-[10px] text-neutral-500">
+                      arXiv 2025
+                    </p>
+                    </div>
+                  </div>
+                </Link>
               </div>
 
               <div className="border border-neutral-700 my-5" />
