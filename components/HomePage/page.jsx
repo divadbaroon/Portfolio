@@ -49,12 +49,35 @@ function Homepage() {
                     alt="Sophia AI Tutoring System"
                   />
                   <div>
-                    <span className="text-sm">Oct 2024</span>
+                    <span className="text-sm">June 2025</span>
                     <h2 className="text-sm font-RubikMedium">
                       Sophia
                     </h2>
                     <p className="text-xs text-neutral-500 mt-1">
                       Multimodal AI tutoring system using concept mapping
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+             <Link href={"/dashboard/plotpact"}>
+              <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
+                <div className="flex items-center gap-x-3">
+                  <Image
+                    src="/plotpact-thumb.png"
+                    width={120}
+                    height={120}
+                    className="rounded-lg object-cover"
+                    alt="PlotPact"
+                  />
+                  <div>
+                    <span className="text-sm">May 2025</span>
+                    <h2 className="text-sm font-RubikMedium">
+                      PlotPact
+                    </h2>
+                    <p className="text-xs text-neutral-500 mt-1">
+                      AI-powered interactive storytelling platform
                     </p>
                   </div>
                 </div>
@@ -72,7 +95,7 @@ function Homepage() {
                     alt="Dynamite Discussion Platform"
                   />
                   <div>
-                    <span className="text-sm">Oct 2024</span>
+                    <span className="text-sm">Feb 2025</span>
                     <h2 className="text-sm font-RubikMedium">
                       Dynamite
                     </h2>
@@ -101,29 +124,6 @@ function Homepage() {
                     </h2>
                     <p className="text-xs text-neutral-500 mt-1">
                       Chrome extension with configurable LLM agents
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            <Link href={"/dashboard/plotpact"}>
-              <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
-                <div className="flex items-center gap-x-3">
-                  <Image
-                    src="/plotpact-thumb.png"
-                    width={120}
-                    height={120}
-                    className="rounded-lg object-cover"
-                    alt="PlotPact"
-                  />
-                  <div>
-                    <span className="text-sm">2024</span>
-                    <h2 className="text-sm font-RubikMedium">
-                      PlotPact
-                    </h2>
-                    <p className="text-xs text-neutral-500 mt-1">
-                      AI-powered interactive storytelling platform
                     </p>
                   </div>
                 </div>
