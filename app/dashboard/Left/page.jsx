@@ -98,7 +98,7 @@ function Leftpage() {
                 <div className="flex items-center gap-x-1">
                   <PiShapesThin />
                   <span className="text-xs font-RubikRegular">
-                    2.5 Years as a Developer
+                    3+ Years Coding Experience
                   </span>
                 </div>
                 <div className="flex items-center gap-x-1">
