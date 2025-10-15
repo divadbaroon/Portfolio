@@ -25,7 +25,7 @@ function Homepage() {
           <div className="p-4">
             <div>
               <h1 className="text-2xl font-RubikMedium text-neutral-300">
-                Hi, I'm David!
+                Hi, I&apos;m David!
               </h1>
               <p className="max-w-sm text-neutral-400 text-sm mt-2">
                 I love building AI-powered projects that provide personalized <br />
