@@ -1,29 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 const Sophia = () => {
   return (
    
       <div className="mt-9 w-full p-5 border border-neutral-700 rounded-2xl h-full bg-[#1C1C1C]">
-        <motion.h1
-          initial={{ x: 100, opacity: 0, filter: "blur(4px)" }}
-          animate={{
-            x: 0,
-            opacity: 1,
-            filter: "blur(0px)",
-            transition: {
-              duration: 0.8,
-              delay: 0.9,
-              type: "spring",
-              stiffness: 200,
-            },
-          }}
-          transition={{ delay: 0.4 }}
-          className="text-3xl font-RubikExtraBold text-center"
-        >
+        <h1 className="text-3xl font-RubikExtraBold text-center">
           Sophia: Multimodal AI Tutoring System
-        </motion.h1>
+        </h1>
         <div className="flex items-center gap-x-2 justify-center my-4 font-RubikRegular">
           <p className="bg-[#282828] w-fit text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[10px]">
             Next.js
