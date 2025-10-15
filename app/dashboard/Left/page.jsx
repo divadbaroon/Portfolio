@@ -84,8 +84,10 @@ function Leftpage() {
   
               </div>
             </div>
+
+            <div className="border border-[#282828] text-neutral-300 my-3" />
   
-            <div className="w-full mt-5 text-neutral-300">
+            <div className="w-full text-neutral-300">
               <h2 className="font-RubikBold my-4">Bio</h2>
               <p className="text-[12px]  font-RubikRegular my-3 -mt-2">
                 Masters student at Virginia Tech researching how AI <br /> can be leveraged to provide students with personalized <br /> and engaging learning experiences.{" "}
