@@ -90,8 +90,19 @@ function Leftpage() {
   
             <div className="w-full text-neutral-300">
               <h2 className="font-RubikBold my-4">Bio</h2>
-              <p className="text-[12px]  font-RubikRegular my-3 -mt-2">
-                Masters student at Virginia Tech researching how AI <br /> can be leveraged to provide students with personalized <br /> and engaging learning experiences.{" "}
+              <p className="text-[12px] font-RubikRegular my-3 -mt-2">
+                Masters student at Virginia Tech conducting research <br /> 
+                on the intersection of AI and education under the <br /> 
+                supervision of{" "}
+                <a 
+                  href="https://chensivan.github.io/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-neutral-300 hover:text-neutral-100 underline transition-colors"
+                >
+                  Dr. Chen
+                </a>
+                .{" "}
               </p>
   
               <div className="mt-6 flex justify-between text-sm">
