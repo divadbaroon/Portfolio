@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 import {
   PiMagicWandThin,
   PiShapesThin,
@@ -16,19 +17,28 @@ import Image from "next/image";
 
 function Leftpage() {
     const [open, setOpen] = useState(false);
+    const pathname = usePathname();
+    const isProjectPage = pathname.includes('/dashboard/');
   
-    return (
-      <div>
-        <motion.div
-          initial={{ y: 10, opacity: 0 }}
-          animate={{
+    const Wrapper = isProjectPage ? 'div' : motion.div;
+    const wrapperProps = isProjectPage 
+      ? {} 
+      : {
+          initial: { y: 10, opacity: 0 },
+          animate: {
             y: 0,
             opacity: 1,
             transition: { duration: 0.3, type: "spring", stiffness: 200 },
-          }}
-          className=" hidden md:block bg-[#1C1C1C] w-full md:w-80  h-fit sticky top-5 "
+          }
+        };
+
+    return (
+      <div>
+        <Wrapper
+          {...wrapperProps}
+          className="hidden md:block bg-[#1C1C1C] w-full md:w-80 h-fit sticky top-5"
         >
-          <div className=" md:w-80 w-full p-3 border border-neutral-800   rounded-2xl h-full bg-[#1C1C1C]  ">
+          <div className="md:w-80 w-full p-3 border border-neutral-800 rounded-2xl h-full bg-[#1C1C1C]">
             <div className="flex">
               <div className="w-full relative">
                 <Image
@@ -48,15 +58,15 @@ function Leftpage() {
                     </p>
                   </div>
                 )}
-                <h1 className="font-RubikExtraBold text-xl  text-neutral-300 mt-3">
+                <h1 className="font-RubikExtraBold text-xl text-neutral-300 mt-3">
                   David Barron
                 </h1>
                 <p className="text-xs font-RubikMedium text-neutral-300 mt-2">
                   dbarron410@vt.edu 📧
                 </p>
   
-                <div className="flex w-full   ">
-                  <div className="flex gap-x-1  text-xs my-4">
+                <div className="flex w-full">
+                  <div className="flex gap-x-1 text-xs my-4">
                     <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
                       NextJS
                     </p>
@@ -66,7 +76,7 @@ function Leftpage() {
                     <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
                       TypeScript
                     </p>
-                    <p className=" bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold shrink-0 ">
+                    <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold shrink-0">
                       Supabase
                     </p>
                     <p className="bg-[#282828] text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[11px] font-RubikBold">
@@ -122,7 +132,7 @@ function Leftpage() {
   
               <div className="my-4 -mt-1">
                 <h1 className="font-RubikRegular">Work History</h1>
-                <div className="mt-7 flex  justify-between">
+                <div className="mt-7 flex justify-between">
                   <div className="flex gap-x-3">
                     <FaUniversity className="text-xl" />
                     <div className="-mt-1">
@@ -134,7 +144,7 @@ function Leftpage() {
                     Oct 2024 - Present
                   </small>
                 </div>
-                <div className="my-3 flex  justify-between">
+                <div className="my-3 flex justify-between">
                   <div className="flex gap-x-3">
                     <SiPearson className="text-xl" />
                     <div className="-mt-1">
@@ -146,7 +156,7 @@ function Leftpage() {
                     May 2023 - Aug 2023
                   </small>
                 </div>
-                <div className="my-3 flex  justify-between">
+                <div className="my-3 flex justify-between">
                   <div className="flex gap-x-3">
                     <BiHealth className="text-xl" />
                     <div className="-mt-1">
@@ -160,7 +170,7 @@ function Leftpage() {
                     May 2022 - Sep 2022
                   </small>
                 </div>
-                <div className="my-3 flex  justify-between">
+                <div className="my-3 flex justify-between">
                   <div className="flex gap-x-3">
                     <MdOutlineSecurity className="text-xl" />
                     <div className="-mt-1">
@@ -177,7 +187,7 @@ function Leftpage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </Wrapper>
       </div>
     );
   }
