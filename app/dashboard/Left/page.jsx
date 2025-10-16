@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 import {
   PiMagicWandThin,
   PiShapesThin,
-  PiGithubLogoLight
+  PiGithubLogoLight,
+  PiLinkedinLogoLight
 } from "react-icons/pi";
 import { MdOutlineSecurity } from "react-icons/md";
 import { SiPearson } from "react-icons/si";
@@ -86,13 +87,18 @@ function Leftpage() {
                 </div>
               </div>
   
-              <div className="flex gap-x-1 w-full h-fit ml-4">
+              <div className="flex gap-x-1 w-full h-fit -ml-6">
                 <Link href="https://github.com/divadbaroon" target="_blank" rel="noopener noreferrer">
-                  <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center -ml-3">
+                  <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center">
                     <PiGithubLogoLight className="text-neutral-100" />
                   </div>
                 </Link>
-  
+                
+                <Link href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
+                  <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center">
+                    <PiLinkedinLogoLight className="text-neutral-100" />
+                  </div>
+                </Link>
               </div>
             </div>
 
