@@ -1,7 +1,6 @@
-import React from "react";
 import Image from "next/image";
 
-const JunoChromeExtensionBlogContent = () => {
+const Juno = () => {
   return (
    
       <div className="mt-9 w-full p-5 border border-neutral-700 rounded-2xl h-full bg-[#1C1C1C]">
@@ -106,4 +105,4 @@ const JunoChromeExtensionBlogContent = () => {
   );
 };
 
-export default JunoChromeExtensionBlogContent;
+export default Juno;

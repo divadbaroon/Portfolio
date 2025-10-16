@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation';
 import Sophia from "./Sophia";
 import PlotPact from "./PlotPact";
 import Dynamite from "./Dynamite";
-import JunoChromeExtensionBlogContent from "./JunoChromeExtensionBlog";
+import Juno from "./Juno";
 
 function Page() {
   const params = useParams();
@@ -22,7 +22,7 @@ function Page() {
       case 'dynamite':
         return <Dynamite />;
       case 'juno':
-        return <JunoChromeExtensionBlogContent />;
+        return <Juno />;
       default:
         return <div>Blog post not found</div>;
     }
