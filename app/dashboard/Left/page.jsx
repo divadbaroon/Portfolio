@@ -12,12 +12,13 @@ import { SiPearson } from "react-icons/si";
 import { BiHealth } from "react-icons/bi";
 import { FaUniversity } from "react-icons/fa";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
 function Leftpage() {
     const [open, setOpen] = useState(false);
+    const [hoveredIcon, setHoveredIcon] = useState(null);
     const pathname = usePathname();
     const isProjectPage = pathname.includes('/dashboard/');
   
@@ -32,6 +33,21 @@ function Leftpage() {
             transition: { duration: 0.3, type: "spring", stiffness: 200 },
           }
         };
+
+    const socialLinks = [
+      {
+        id: 'github',
+        name: 'GitHub',
+        url: 'https://github.com/divadbaroon',
+        icon: <PiGithubLogoLight className="text-neutral-100" />
+      },
+      {
+        id: 'linkedin',
+        name: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/david-barron-8248a11aa/',
+        icon: <PiLinkedinLogoLight className="text-neutral-100" />
+      }
+    ];
 
     return (
       <div>
@@ -88,17 +104,47 @@ function Leftpage() {
               </div>
   
               <div className="flex gap-x-1 w-full h-fit -ml-6">
-                <Link href="https://github.com/divadbaroon" target="_blank" rel="noopener noreferrer">
-                  <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center">
-                    <PiGithubLogoLight className="text-neutral-100" />
+                {socialLinks.map((social) => (
+                  <div
+                    key={social.id}
+                    className="relative"
+                    onMouseEnter={() => setHoveredIcon(social.id)}
+                    onMouseLeave={() => setHoveredIcon(null)}
+                  >
+                    <Link href={social.url} target="_blank" rel="noopener noreferrer">
+                      <div className={`bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center ${social.id === 'github' ? '-ml-3' : ''}`}>
+                        {social.icon}
+                      </div>
+                    </Link>
+                    
+                    <AnimatePresence mode="wait">
+                      {hoveredIcon === social.id && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -20, scale: 0.6 }}
+                          animate={{
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                            transition: {
+                              type: "spring",
+                              stiffness: 260,
+                              damping: 10,
+                            },
+                          }}
+                          exit={{ opacity: 0, y: -20, scale: 0.6 }}
+                          className="absolute top-10 left-1/2 -translate-x-1/2 flex text-xs flex-col items-center justify-center rounded-md bg-black z-50 shadow-xl px-4 py-2 whitespace-nowrap"
+                        >
+                          <div className="absolute inset-x-10 z-30 w-[20%] -top-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent h-px" />
+                          <div className="absolute left-10 w-[40%] z-30 -top-px bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px" />
+                          <div className="font-bold text-white relative z-30 text-base">
+                            {social.name}
+                          </div>
+                          <div className="text-white text-xs">{social.url}</div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-                </Link>
-                
-                <Link href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
-                  <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center">
-                    <PiLinkedinLogoLight className="text-neutral-100" />
-                  </div>
-                </Link>
+                ))}
               </div>
             </div>
 
