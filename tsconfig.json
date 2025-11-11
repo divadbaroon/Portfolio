@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.js", "app/layout.js", "app/ui/dashboard/View/page.jsx", "app/dashboard/[id]/JunoChromeExtensionBlog.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.js", "app/layout.js", "app/ui/dashboard/View/page.jsx", "app/dashboard/[id]/Juno.jsx"],
   "exclude": ["node_modules"]
 }

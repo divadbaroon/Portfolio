@@ -23,7 +23,7 @@ function Page() {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              <button className="bg-[#696969] h-7 p-1 rounded-md text-xs w-full font-RubikMedium text-neutral-50 ">
+              <button className="bg-[#696969] h-7 p-1 rounded-md text-xs w-full font-RubikMedium text-neutral-50 hover:bg-[#7a7a7a] transition-colors">
                 Preview
               </button>
             </Link>
@@ -37,7 +37,7 @@ function Page() {
                   href="https://arxiv.org/abs/2507.20137" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:bg-neutral-800 p-2 rounded-md block"
+                  className="hover:bg-neutral-800 p-2 rounded-md block transition-colors"
                 >
                   <div className="flex gap-x-3">
                     <div className="bg-neutral-700/50 h-8 w-8 rounded-full flex items-center justify-center shrink-0">
