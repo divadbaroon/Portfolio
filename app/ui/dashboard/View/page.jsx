@@ -1,38 +1,14 @@
 "use client";
-import React from "react";
-import { usePathname } from "next/navigation";
-import { HiOutlineDocumentText } from "react-icons/hi";
 
-import TestimonialTooltip from "@/app/TestimonialTooltip/page";
-import { motion } from "framer-motion";
+import React from "react";
+
 import Link from 'next/link';
 
+import { HiOutlineDocumentText } from "react-icons/hi";
+
 function Page() {
-  const pathname = usePathname();
-  const isProjectPage = pathname.includes('/dashboard/');
-
-  const Wrapper = isProjectPage ? 'div' : motion.div;
-  const wrapperProps = isProjectPage 
-    ? {} 
-    : {
-        initial: { y: 10, opacity: 0 },
-        animate: {
-          y: 0,
-          opacity: 1,
-          transition: {
-            duration: 0.5,
-            delay: 0.9,
-            type: "spring",
-            stiffness: 200,
-          },
-        }
-      };
-
   return (
-    <Wrapper
-      {...wrapperProps}
-      className="lg:block w-ful lg:w-fit hidden max-xl:hidden"
-    >
+    <div className="lg:block w-ful lg:w-fit hidden max-xl:hidden">
       <div className="md:w-60 w-full rounded-2xl h-fit sticky top-5">
         <div>
           <div className="bg-[#1C1C1C] min-w-min rounded-2xl p-4 border border-neutral-800 h-fit">
@@ -81,19 +57,11 @@ function Page() {
                   </div>
                 </Link>
               </div>
-
-              <div className="border border-neutral-700 my-5" />
-
-              <div className="flex items-center justify-center gap-x-2">
-                <TestimonialTooltip />
-              </div>
             </div>
           </div>
         </div>
-
-        
       </div>
-    </Wrapper>
+    </div>
   );
 }
 

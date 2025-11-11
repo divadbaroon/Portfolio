@@ -1,6 +1,7 @@
 "use client";
+
 import React, { useState } from "react";
-import { usePathname } from "next/navigation";
+
 import {
   PiMagicWandThin,
   PiShapesThin,
@@ -11,33 +12,15 @@ import { SiPearson } from "react-icons/si";
 import { BiHealth } from "react-icons/bi";
 import { FaUniversity } from "react-icons/fa";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
 function Leftpage() {
     const [open, setOpen] = useState(false);
-    const pathname = usePathname();
-    const isProjectPage = pathname.includes('/dashboard/');
-  
-    const Wrapper = isProjectPage ? 'div' : motion.div;
-    const wrapperProps = isProjectPage 
-      ? {} 
-      : {
-          initial: { y: 10, opacity: 0 },
-          animate: {
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.3, type: "spring", stiffness: 200 },
-          }
-        };
 
     return (
       <div>
-        <Wrapper
-          {...wrapperProps}
-          className="hidden md:block bg-[#1C1C1C] w-full md:w-80 h-fit sticky top-5"
-        >
+        <div className="hidden md:block bg-[#1C1C1C] w-full md:w-80 h-fit sticky top-5">
           <div className="md:w-80 w-full p-3 border border-neutral-800 rounded-2xl h-full bg-[#1C1C1C]">
             <div className="flex">
               <div className="w-full relative">
@@ -92,7 +75,6 @@ function Leftpage() {
                     <PiGithubLogoLight className="text-neutral-100" />
                   </div>
                 </Link>
-  
               </div>
             </div>
 
@@ -187,7 +169,7 @@ function Leftpage() {
               </div>
             </div>
           </div>
-        </Wrapper>
+        </div>
       </div>
     );
   }

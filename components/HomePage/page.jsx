@@ -1,25 +1,13 @@
 "use client";
-import Link from "next/link";
+
 import React from "react";
-import { motion } from "framer-motion";
+
+import Link from "next/link";
 import Image from "next/image";
 
 function Homepage() {
   return (
-    <motion.div
-      initial={{ y: 100, opacity: 0 }}
-      animate={{
-        y: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.8,
-          delay: 0.6,
-          type: "spring",
-          stiffness: 200,
-        },
-      }}
-      className="w-full lg:w-fit "
-    >
+    <div className="w-full lg:w-fit">
       <div className="bg-[#1C1C1C] lg:bg-transparent rounded-2xl">
         <div>
           <div className="p-4">
@@ -132,7 +120,7 @@ function Homepage() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
