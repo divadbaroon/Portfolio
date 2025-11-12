@@ -83,7 +83,7 @@ function Leftpage() {
                   </div>
                 </Link>
                 <Link 
-                  href="https://www.linkedin.com/in/david-barron-026217207/" 
+                  href="https://www.linkedin.com/in/david-barron-8248a11aa/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   title="LinkedIn Profile"
