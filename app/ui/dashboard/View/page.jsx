@@ -2,19 +2,25 @@
 
 import React, { useEffect, useState } from "react";
 
-import Link from 'next/link';
-
 import { HiOutlineDocumentText } from "react-icons/hi";
+
+import Link from 'next/link';
+import { usePathname } from "next/navigation";
 
 function Page() {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
+  const isDashboard = pathname.includes('/dashboard/');
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   return (
-    <div className={`lg:block w-ful lg:w-fit hidden max-xl:hidden transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '300ms' }}>
+    <div 
+      className={`w-full lg:w-fit ${!isDashboard ? `transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}` : 'opacity-100'}`}
+      style={!isDashboard ? { transitionDelay: '200ms' } : undefined}
+    >
       <div className="md:w-60 w-full rounded-2xl h-fit sticky top-5">
         <div>
           <div className="bg-[#1C1C1C] min-w-min rounded-2xl p-4 border border-neutral-800 h-fit">

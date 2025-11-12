@@ -1,5 +1,7 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
+
 import {
   PiMagicWandThin,
   PiShapesThin,
@@ -12,17 +14,23 @@ import { FaUniversity } from "react-icons/fa";
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 function Leftpage() {
   const [open, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
+  const isDashboard = pathname.includes('/dashboard/');
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
     return (
-      <div className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '100ms' }}>
+      <div 
+        className={`w-full lg:w-fit ${!isDashboard ? `transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}` : 'opacity-100'}`}
+        style={!isDashboard ? { transitionDelay: '200ms' } : undefined}
+      >
         <div className="hidden md:block bg-[#1C1C1C] w-full md:w-80 h-fit sticky top-5">
           <div className="md:w-80 w-full p-3 border border-neutral-800 rounded-2xl h-full bg-[#1C1C1C]">
             <div className="flex">
