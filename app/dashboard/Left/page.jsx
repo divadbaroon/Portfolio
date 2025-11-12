@@ -17,7 +17,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 function Leftpage() {
-  const [open, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const pathname = usePathname();
   const isDashboard = pathname.includes('/dashboard/');
@@ -43,13 +42,6 @@ function Leftpage() {
                   alt=""
                 />
                 <div />
-                {open && (
-                  <div className="border border-lime-400 h-5 flex items-center justify-center rounded-2xl w-fit px-2 absolute top-[4.7rem] right-3 ">
-                    <p className="text-[9px] font-RubikMedium text-lime-300">
-                      Open to freelancing
-                    </p>
-                  </div>
-                )}
                 <h1 className="font-RubikExtraBold text-xl text-neutral-300 mt-3">
                   David Barron
                 </h1>
