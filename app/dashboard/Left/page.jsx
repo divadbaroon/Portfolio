@@ -1,11 +1,9 @@
 "use client";
-
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import {
   PiMagicWandThin,
   PiShapesThin,
-  PiGithubLogoLight
+  PiGithubLogoLight,
 } from "react-icons/pi";
 import { MdOutlineSecurity } from "react-icons/md";
 import { SiPearson } from "react-icons/si";
@@ -16,10 +14,15 @@ import Link from "next/link";
 import Image from "next/image";
 
 function Leftpage() {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
     return (
-      <div>
+      <div className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '100ms' }}>
         <div className="hidden md:block bg-[#1C1C1C] w-full md:w-80 h-fit sticky top-5">
           <div className="md:w-80 w-full p-3 border border-neutral-800 rounded-2xl h-full bg-[#1C1C1C]">
             <div className="flex">
@@ -31,9 +34,7 @@ function Leftpage() {
                   src="/headshot.png"
                   alt=""
                 />
-                <div
-                  
-                />
+                <div />
                 {open && (
                   <div className="border border-lime-400 h-5 flex items-center justify-center rounded-2xl w-fit px-2 absolute top-[4.7rem] right-3 ">
                     <p className="text-[9px] font-RubikMedium text-lime-300">

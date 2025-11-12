@@ -1,13 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
 
 function Homepage() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <div className="w-full lg:w-fit">
+    <div 
+      className={`w-full lg:w-fit transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '200ms' }}
+    >
       <div className="bg-[#1C1C1C] lg:bg-transparent rounded-2xl">
         <div>
           <div className="p-4">
