@@ -6,6 +6,7 @@ import {
   PiMagicWandThin,
   PiShapesThin,
   PiGithubLogoLight,
+  PiLinkedinLogo,
 } from "react-icons/pi";
 import { MdOutlineSecurity } from "react-icons/md";
 import { SiPearson } from "react-icons/si";
@@ -28,7 +29,7 @@ function Leftpage() {
     return (
       <div 
         className={`w-full lg:w-fit ${!isDashboard ? `transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}` : 'opacity-100'}`}
-        style={!isDashboard ? { transitionDelay: '200ms' } : undefined}
+        style={!isDashboard ? { transitionDelay: '100ms' } : undefined}
       >
         <div className="hidden md:block bg-[#1C1C1C] w-full md:w-80 h-fit sticky top-5">
           <div className="md:w-80 w-full p-3 border border-neutral-800 rounded-2xl h-full bg-[#1C1C1C]">
@@ -70,10 +71,16 @@ function Leftpage() {
                 </div>
               </div>
   
-              <div className="flex gap-x-1 w-full h-fit ml-4">
+              <div className="flex gap-x-2 absolute top-2.5 right-2">
+
                 <Link href="https://github.com/divadbaroon" target="_blank" rel="noopener noreferrer">
-                  <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center -ml-3">
+                  <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center hover:bg-neutral-700/70 transition-colors">
                     <PiGithubLogoLight className="text-neutral-100" />
+                  </div>
+                </Link>
+                <Link href="https://www.linkedin.com/in/david-barron-026217207/" target="_blank" rel="noopener noreferrer">
+                  <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center hover:bg-neutral-700/70 transition-colors">
+                    <PiLinkedinLogo className="text-neutral-100" />
                   </div>
                 </Link>
               </div>
