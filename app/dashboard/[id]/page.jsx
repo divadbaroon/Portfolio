@@ -48,7 +48,7 @@ function Page() {
 
   return (
     <div className="text-neutral-50">
-      <div className="sticky top-5">
+      <div className="sticky top-5 z-50">
         <div>
           <div className="-mt-6">
             <div className="bg-neutral-700/25 backdrop-blur-md h-10 w-full rounded-xl flex items-center gap-x-7">
@@ -66,7 +66,7 @@ function Page() {
 
       <div
         ref={scrollRef}
-        className="custom-scroll"
+        className="custom-scroll z-0"
         style={{
           WebkitMaskImage: `linear-gradient(to bottom, rgba(0,0,0,${fade}) 0%, black 10%, black 100%)`,
           maskImage: `linear-gradient(to bottom, rgba(0,0,0,${fade}) 0%, black 10%, black 100%)`,
