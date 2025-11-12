@@ -71,7 +71,7 @@ function Leftpage() {
                 </div>
               </div>
   
-              <div className="flex gap-x-2 absolute top-2.5 right-2">
+              <div className="flex gap-x-1.5 absolute top-2.5 right-2">
                 <Link 
                   href="https://github.com/divadbaroon" 
                   target="_blank" 
