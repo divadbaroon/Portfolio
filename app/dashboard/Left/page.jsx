@@ -72,13 +72,22 @@ function Leftpage() {
               </div>
   
               <div className="flex gap-x-2 absolute top-2.5 right-2">
-
-                <Link href="https://github.com/divadbaroon" target="_blank" rel="noopener noreferrer">
+                <Link 
+                  href="https://github.com/divadbaroon" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title="GitHub Profile"
+                >
                   <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center hover:bg-neutral-700/70 transition-colors">
                     <PiGithubLogoLight className="text-neutral-100" />
                   </div>
                 </Link>
-                <Link href="https://www.linkedin.com/in/david-barron-026217207/" target="_blank" rel="noopener noreferrer">
+                <Link 
+                  href="https://www.linkedin.com/in/david-barron-026217207/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title="LinkedIn Profile"
+                >
                   <div className="bg-neutral-700/50 h-7 w-7 rounded-full flex items-center justify-center hover:bg-neutral-700/70 transition-colors">
                     <PiLinkedinLogo className="text-neutral-100" />
                   </div>
