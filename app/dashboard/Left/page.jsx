@@ -114,19 +114,6 @@ function Leftpage() {
                 .{" "}
               </p>
   
-              <div className="mt-6 flex justify-between text-sm">
-                <div className="flex items-center gap-x-1">
-                  <PiShapesThin />
-                  <span className="text-xs font-RubikRegular">
-                    3+ Years Coding Experience
-                  </span>
-                </div>
-                <div className="flex items-center gap-x-1">
-                  <PiMagicWandThin />
-                  <span className="text-xs font-RubikRegular">4 Projects</span>
-                </div>
-              </div>
-  
               <div className="border border-[#282828] text-neutral-300 my-6" />
   
               <div className="my-4 -mt-1">
