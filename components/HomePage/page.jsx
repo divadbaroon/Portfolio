@@ -24,9 +24,7 @@ function Homepage() {
                 Hi, I&apos;m David!
               </h1>
               <p className="max-w-sm text-neutral-400 text-sm mt-2">
-                I love building AI-powered projects that provide personalized <br />
-                and proactive learning experiences for students, and <br />
-                occasionally I write about them
+                I study how LLMs can proactively infer learner needs through cognitive modeling. Feel free to reach out!
               </p>
             </div>
           </div>
