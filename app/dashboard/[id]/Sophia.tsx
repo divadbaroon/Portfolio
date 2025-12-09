@@ -5,9 +5,22 @@ const Sophia = () => {
   return (
    
       <div className="mt-9 w-full p-5 border border-neutral-700 rounded-2xl h-full bg-[#1C1C1C] text-[#f7f8f8]">
-        <h1 className="text-3xl font-RubikExtraBold text-center">
-          Sophia: Multimodal AI Tutoring System
-        </h1>
+        {/* Hero Section */}
+        <header className="pt-10 pb-12 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Breadcrumb - Linear style */}
+            <p className="text-[#8a8f98] text-[13px] tracking-[-0.01em] mb-6" style={{ lineHeight: 1.5 }}>
+              <span className="hover:text-[#f7f8f8] cursor-pointer transition-colors">Projects</span>
+              <span className="mx-2 text-[#62666d]">/</span>
+              <span className="hover:text-[#f7f8f8] cursor-pointer transition-colors">Research</span>
+            </p>
+
+            <h1 className="text-3xl font-RubikExtraBold text-center">
+              Sophia: Multimodal AI Tutoring System
+            </h1>
+          </div>
+        </header>
+
         <div className="flex items-center gap-x-2 justify-center my-4 font-RubikRegular">
           <p className="bg-[#282828] w-fit text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[10px]">
             Next.js
