@@ -35,6 +35,13 @@ const Sophia = () => {
                 alt="Sophia AI Tutoring Interface"
               />
             </div>
+
+            {/* Author & Date */}
+            <p className="text-[#8a8f98] text-[13px] mt-8" style={{ lineHeight: 1.5 }}>
+              David Barron
+              <span className="mx-2 text-[#62666d]">·</span>
+              October 2024
+            </p>
           </div>
         </header>
 
