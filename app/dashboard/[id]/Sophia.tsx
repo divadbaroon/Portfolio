@@ -45,22 +45,20 @@ const Sophia = () => {
           </div>
         </header>
 
-        <div className="flex items-center gap-x-2 justify-center my-4 font-RubikRegular">
-          <p className="bg-[#282828] w-fit text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[10px]">
-            Next.js
-          </p>
-          <p className="bg-[#282828] w-fit text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[10px]">
-            React
-          </p>
-          <p className="bg-[#282828] w-fit text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[10px]">
-            TypeScript
-          </p>
-          <p className="bg-[#282828] w-fit text-neutral-300 rounded-md px-2 h-5 flex items-center justify-center text-[10px]">
-            AI/ML
-          </p>
-          <div className="w-1 h-1 rounded-full bg-neutral-400" />
-          <span className="text-xs">Oct 2024 - Present</span>
-        </div>
+        {/* Intro paragraph */}
+        <section className="px-6 pb-16">
+          <div className="max-w-[624px] mx-auto">
+            <p 
+              className="text-[1.0625rem] md:text-[1.125rem] text-[#d0d6e0]"
+              style={{ lineHeight: 1.6 }}
+            >
+              Sophia is a multimodal AI tutoring system designed to help students 
+              identify and remediate conceptual misunderstandings in data structures 
+              and algorithms. Deployed in a junior-level course at Virginia Tech, 
+              it achieved a 3.95/5.0 satisfaction rating across 70+ students.
+            </p>
+          </div>
+        </section>
 
         <div className="my-11 font-RubikMedium">
           <h2 className="text-2xl font-RubikExtraBold mt-4">
