@@ -8,15 +8,21 @@ const Sophia = () => {
         {/* Hero Section */}
         <header className="pt-10 pb-12 px-6">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Breadcrumb - Linear style */}
+            {/* Breadcrumb */}
             <p className="text-[#8a8f98] text-[13px] tracking-[-0.01em] mb-6" style={{ lineHeight: 1.5 }}>
               <span className="hover:text-[#f7f8f8] cursor-pointer transition-colors">Projects</span>
               <span className="mx-2 text-[#62666d]">/</span>
               <span className="hover:text-[#f7f8f8] cursor-pointer transition-colors">Research</span>
             </p>
 
-            <h1 className="text-3xl font-RubikExtraBold text-center">
-              Sophia: Multimodal AI Tutoring System
+            {/* Title */}
+            <h1 
+              className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-semibold tracking-[-0.022em] mb-6"
+              style={{ lineHeight: 1.1 }}
+            >
+              Sophia: Multimodal AI
+              <br />
+              Tutoring System
             </h1>
           </div>
         </header>
