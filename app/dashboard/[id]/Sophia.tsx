@@ -276,19 +276,45 @@ const Sophia = () => {
               className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
               style={{ lineHeight: 1.33 }}
             >
-              Real-World Deployment and Impact
+              Deployment & Results
             </h3>
 
             <p 
               className="text-[#8a8f98] tracking-[-0.011em] mb-6"
               style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
             >
-              Deployed in an authentic classroom environment, Sophia was used by 37 participants who completed 
-              40 lessons across three core concepts: Binary Search Trees, sorting algorithms, and linked lists. 
-              Despite minimal direct AI interaction (only 13.5% of students actively used the &quot;Ask Sophia&quot; 
-              feature), students achieved high satisfaction ratings primarily through self-directed learning 
-              and comprehensive assessment reports.
+              Deployed in an authentic classroom environment, Sophia was used by 
+              37 participants who completed 40 lessons across three core concepts: 
+              Binary Search Trees, sorting algorithms, and linked lists.
             </p>
+
+            {/* Stats grid */}
+            <div className="grid grid-cols-3 gap-8 my-8 py-8 px-6 bg-[#1c1c1f] rounded-lg">
+              <div>
+                <p className="text-[2rem] font-semibold text-[#f7f8f8] mb-2 tracking-[-0.022em]">3.95</p>
+                <p className="text-[11px] tracking-[0.02em] text-[#62666d] uppercase font-medium">
+                  Satisfaction
+                  <br />
+                  Rating /5.0
+                </p>
+              </div>
+              <div>
+                <p className="text-[2rem] font-semibold text-[#f7f8f8] mb-2 tracking-[-0.022em]">70+</p>
+                <p className="text-[11px] tracking-[0.02em] text-[#62666d] uppercase font-medium">
+                  Students
+                  <br />
+                  Enrolled
+                </p>
+              </div>
+              <div>
+                <p className="text-[2rem] font-semibold text-[#f7f8f8] mb-2 tracking-[-0.022em]">40</p>
+                <p className="text-[11px] tracking-[0.02em] text-[#62666d] uppercase font-medium">
+                  Lessons
+                  <br />
+                  Completed
+                </p>
+              </div>
+            </div>
 
             <p 
               className="text-[#8a8f98] tracking-[-0.011em] mb-6"
@@ -296,8 +322,7 @@ const Sophia = () => {
             >
               Follow-up interviews revealed that students valued maintaining control over when and how they 
               received assistance, preferring manual control over automatic AI intervention. The research 
-              provides valuable insights into barriers to AI adoption in educational settings, including 
-              learning philosophies, academic integrity concerns, and environmental factors.
+              provides valuable insights into barriers to AI adoption in educational settings.
             </p>
 
             <h3 
