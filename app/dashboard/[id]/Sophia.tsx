@@ -64,9 +64,12 @@ const Sophia = () => {
         <article className="px-6">
           <div className="max-w-[624px] mx-auto">
           
-            <h2 className="text-2xl font-RubikExtraBold mt-4">
+            <h3 
+              className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
+              style={{ lineHeight: 1.33 }}
+            >
               What is Sophia?
-            </h2>
+            </h3>
 
             <p className="my-4">
               Sophia is a multimodal AI tutoring system that helps students identify and remediate 
@@ -81,9 +84,12 @@ const Sophia = () => {
               them toward self-discovery of their misconceptions through targeted pedagogical interventions.
             </p>
 
-            <h2 className="text-2xl font-RubikExtraBold my-5">
+            <h3 
+              className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
+              style={{ lineHeight: 1.33 }}
+            >
               Dynamic Concept Mapping
-            </h2>
+            </h3>
 
             <p className="my-4">
               At its foundation, Sophia generates and refines a dynamic concept map based on all available 
@@ -100,9 +106,12 @@ const Sophia = () => {
               allows Sophia to precisely target areas of uncertainty through appropriate remediation tools.
             </p>
                       
-            <h2 className="text-2xl font-RubikExtraBold my-5">
+            <h3 
+              className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
+              style={{ lineHeight: 1.33 }}
+            >
               Multi-Agent Architecture
-            </h2>
+            </h3>
 
             <p className="my-4">
               Sophia uses a sophisticated multi-agent architecture where different hierarchical levels focus 
@@ -130,9 +139,12 @@ const Sophia = () => {
               diagnostic process and provides better reasoning and documentation along the workflow.
             </p>
 
-            <h2 className="text-2xl font-RubikExtraBold my-5">
+            <h3 
+              className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
+              style={{ lineHeight: 1.33 }}
+            >
               Multimodal Interaction Capabilities
-            </h2>
+            </h3>
 
             <p className="my-4">
               Sophia supports multiple interaction modalities to accommodate diverse learning styles. Students 
@@ -148,9 +160,12 @@ const Sophia = () => {
               mental models in ways that text alone cannot capture.
             </p>
 
-            <h2 className="text-2xl font-RubikExtraBold my-5">
+            <h3 
+              className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
+              style={{ lineHeight: 1.33 }}
+            >
               Pedagogical Approach
-            </h2>
+            </h3>
 
             <p className="my-4">
               Sophia&apos;s system prompt emphasizes guiding users toward self-discovery while remaining 
@@ -165,9 +180,12 @@ const Sophia = () => {
               motivation to engage in independent problem-solving and reducing critical thinking capabilities.
             </p>
 
-            <h2 className="text-2xl font-RubikExtraBold my-5">
+            <h3 
+              className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
+              style={{ lineHeight: 1.33 }}
+            >
               Comprehensive Assessment Reports
-            </h2>
+            </h3>
 
             <p className="my-4">
               At the end of each lesson, Sophia visualizes the newly refined concept map for students via 
@@ -183,9 +201,12 @@ const Sophia = () => {
               without feeling like the AI is intruding on their self-directed learning process.
             </p>
 
-            <h2 className="text-2xl font-RubikExtraBold my-5">
+            <h3 
+              className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
+              style={{ lineHeight: 1.33 }}
+            >
               Real-World Deployment and Impact
-            </h2>
+            </h3>
 
             <p className="my-4">
               Deployed in an authentic classroom environment, Sophia was used by 37 participants who completed 
@@ -202,9 +223,12 @@ const Sophia = () => {
               learning philosophies, academic integrity concerns, and environmental factors.
             </p>
 
-            <h2 className="text-2xl font-RubikExtraBold my-5">
+            <h3 
+              className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
+              style={{ lineHeight: 1.33 }}
+            >
               Technical Implementation
-            </h2>
+            </h3>
 
             <p className="my-4">
               Sophia operates within a standard IDE-based editor integrated with an &quot;Ask Sophia&quot; 
