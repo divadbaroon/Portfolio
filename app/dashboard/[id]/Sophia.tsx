@@ -358,6 +358,21 @@ const Sophia = () => {
 
           </div>
         </article>
+
+        {/* Footer */}
+        <footer className="border-t border-[#23252a] py-6 px-6">
+          <div className="max-w-[624px] mx-auto flex justify-between items-center">
+            <p className="text-[#62666d] text-[13px]">
+              Virginia Tech · 2024
+            </p>
+            <a 
+              href="#" 
+              className="text-[#8a8f98] text-[13px] hover:text-[#f7f8f8] transition-colors"
+            >
+              View on GitHub →
+            </a>
+          </div>
+        </footer>
       </div>
   );
 };
