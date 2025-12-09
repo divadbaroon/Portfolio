@@ -4,7 +4,7 @@ import Image from "next/image";
 const Sophia = () => {
   return (
    
-      <div className="mt-9 w-full p-5 border border-neutral-700 rounded-2xl h-full bg-[#1C1C1C]">
+      <div className="mt-9 w-full p-5 border border-neutral-700 rounded-2xl h-full bg-[#1C1C1C] text-[#f7f8f8]">
         <h1 className="text-3xl font-RubikExtraBold text-center">
           Sophia: Multimodal AI Tutoring System
         </h1>
