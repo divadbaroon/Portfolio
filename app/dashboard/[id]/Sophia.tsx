@@ -130,33 +130,46 @@ const Sophia = () => {
               style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
             >
               Sophia uses a sophisticated multi-agent architecture where different hierarchical levels focus 
-              on key roles in identifying and remediating student misconceptions. The architecture consists 
-              of three main agents:
+              on key roles in identifying and remediating student misconceptions.
             </p>
 
-            <p 
-              className="text-[#8a8f98] tracking-[-0.011em] mb-6"
-              style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
-            >
-              <strong>Concept Agents</strong> are responsible for updating the student&apos;s knowledge state 
-              for each applicable concept to the task the student is solving.
-            </p>
+            <div className="my-8 grid grid-cols-1 md:grid-cols-3 gap-4 bg-[#1c1c1f] rounded-lg p-6">
+              <div className="border-l-2 border-[#34343a] pl-4">
+                <p className="text-[11px] tracking-[0.02em] text-[#62666d] uppercase mb-2 font-medium">
+                  Concept Agents
+                </p>
+                <p 
+                  className="text-[#8a8f98] text-[13px]"
+                  style={{ lineHeight: 1.5 }}
+                >
+                  Updating the student&apos;s knowledge state for each applicable concept.
+                </p>
+              </div>
 
-            <p 
-              className="text-[#8a8f98] tracking-[-0.011em] mb-6"
-              style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
-            >
-              <strong>Pivot Agent</strong> utilizes the student&apos;s concept map to precisely pivot the 
-              focus of the conversation toward areas of misconception.
-            </p>
+              <div className="border-l-2 border-[#34343a] pl-4">
+                <p className="text-[11px] tracking-[0.02em] text-[#62666d] uppercase mb-2 font-medium">
+                  Pivot Agent
+                </p>
+                <p 
+                  className="text-[#8a8f98] text-[13px]"
+                  style={{ lineHeight: 1.5 }}
+                >
+                  Pivoting conversation focus toward areas of misconception.
+                </p>
+              </div>
 
-            <p 
-              className="text-[#8a8f98] tracking-[-0.011em] mb-6"
-              style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
-            >
-              <strong>Orchestrator Agent</strong> deploys the appropriate tooling for remediation, including 
-              visualizations, sketching interactions, and code highlighting.
-            </p>
+              <div className="border-l-2 border-[#34343a] pl-4">
+                <p className="text-[11px] tracking-[0.02em] text-[#62666d] uppercase mb-2 font-medium">
+                  Orchestrator
+                </p>
+                <p 
+                  className="text-[#8a8f98] text-[13px]"
+                  style={{ lineHeight: 1.5 }}
+                >
+                  Deploying visualizations, sketching, and code highlighting.
+                </p>
+              </div>
+            </div>
 
             <p 
               className="text-[#8a8f98] tracking-[-0.011em] mb-6"
@@ -299,6 +312,7 @@ const Sophia = () => {
               The platform integrates seamlessly into existing educational workflows, requiring minimal setup 
               while providing maximum value through its intelligent assessment and remediation capabilities.
             </p>
+
           </div>
         </article>
       </div>
