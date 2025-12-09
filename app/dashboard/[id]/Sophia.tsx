@@ -249,14 +249,27 @@ const Sophia = () => {
               next, as well as a detailed table presenting the knowledge state for each concept.
             </p>
 
+            {/* Quote block */}
+            <blockquote className="my-8 bg-[#1c1c1f] rounded-lg p-6 border-l-2 border-[#34343a]">
+              <p 
+                className="text-[#d0d6e0] italic mb-4"
+                style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
+              >
+                "I can tailor my approach... it tells you what you&apos;re good at 
+                which is encouraging."
+              </p>
+              <p className="text-[11px] tracking-[0.02em] text-[#62666d] uppercase font-medium">
+                Study Participant
+              </p>
+            </blockquote>
+
             <p 
               className="text-[#8a8f98] tracking-[-0.011em] mb-6"
               style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
             >
-              Students particularly valued these non-intrusive assessment reports, with one explaining: 
-              &quot;I can tailor my approach... it tells you what you&apos;re good at which is encouraging.&quot; 
-              The reports provide actionable feedback that students can use to guide their continued learning 
-              without feeling like the AI is intruding on their self-directed learning process.
+              Students valued these non-intrusive assessment reports, which provide 
+              actionable feedback without feeling like the AI is intruding on their 
+              self-directed learning process.
             </p>
 
             <h3 
