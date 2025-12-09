@@ -325,31 +325,36 @@ const Sophia = () => {
               provides valuable insights into barriers to AI adoption in educational settings.
             </p>
 
-            <h3 
-              className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
-              style={{ lineHeight: 1.33 }}
-            >
-              Technical Implementation
-            </h3>
+            {/* Section: Technical Stack */}
+            <section className="mb-6">
+              <h3 
+                className="text-[1.25rem] font-semibold tracking-[-0.012em] mb-6 text-[#f7f8f8]"
+                style={{ lineHeight: 1.33 }}
+              >
+                Technical Implementation
+              </h3>
+              <p 
+                className="text-[#8a8f98] tracking-[-0.011em] mb-6"
+                style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
+              >
+                Sophia operates within a standard IDE-based editor integrated with 
+                an "Ask Sophia" button that students can activate when they naturally 
+                encounter difficulty. Students maintain complete control over their 
+                learning experience.
+              </p>
 
-            <p 
-              className="text-[#8a8f98] tracking-[-0.011em] mb-6"
-              style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
-            >
-              Sophia operates within a standard IDE-based editor integrated with an &quot;Ask Sophia&quot; 
-              button that students can activate when they naturally encounter difficulty. The system is built 
-              with Next.js and React, using TypeScript for type safety and maintainability. Students maintain 
-              complete control over their learning experience, with the ability to close the interaction at 
-              any time.
-            </p>
-
-            <p 
-              className="text-[#8a8f98] tracking-[-0.011em] mb-6"
-              style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
-            >
-              The platform integrates seamlessly into existing educational workflows, requiring minimal setup 
-              while providing maximum value through its intelligent assessment and remediation capabilities.
-            </p>
+              <div className="flex flex-wrap gap-2">
+                {["Next.js", "React", "TypeScript", "AI/ML", "WebSocket", "PostgreSQL"].map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-[13px] text-[#8a8f98] border border-[#34343a] rounded-md px-3 py-1.5"
+                    style={{ lineHeight: 1.5 }}
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </section>
 
           </div>
         </article>
