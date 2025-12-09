@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from "react";
 
 import {
-  PiMagicWandThin,
-  PiShapesThin,
   PiGithubLogoLight,
   PiLinkedinLogo,
 } from "react-icons/pi";
