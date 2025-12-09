@@ -24,6 +24,17 @@ const Sophia = () => {
               <br />
               Tutoring System
             </h1>
+
+            {/* Hero Image */}
+            <div className="mt-10 mb-8">
+              <Image
+                width={1200}
+                height={700}
+                className="rounded-lg w-full border border-[#23252a]"
+                src="/sophia-thumb.png"
+                alt="Sophia AI Tutoring Interface"
+              />
+            </div>
           </div>
         </header>
 
@@ -61,16 +72,6 @@ const Sophia = () => {
             uses dynamic concept mapping to understand each student&apos;s knowledge state and guides 
             them toward self-discovery of their misconceptions through targeted pedagogical interventions.
           </p>
-
-          <div className="my-9">
-            <Image
-              width={1000}
-              height={1000}
-              className="rounded-lg h-200 w-full object-cover"
-              src="/sophia-thumb.png"
-              alt="Sophia AI Tutoring Interface"
-            />
-          </div>
 
           <h2 className="text-2xl font-RubikExtraBold my-5">
             Dynamic Concept Mapping
