@@ -35,13 +35,15 @@ function Homepage() {
             <Link href={"/dashboard/sophia"}>
               <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
                 <div className="flex items-center gap-x-3">
-                  <Image
-                    src="/sophia-thumb.png"
-                    width={120}
-                    height={120}
-                    className="rounded-lg object-cover"
-                    alt="Sophia AI Tutoring System"
-                  />
+                  <div className="w-[120px] h-[85px] rounded-lg overflow-hidden shrink-0">
+                    <Image
+                      src="/sophia-thumb.png"
+                      width={120}
+                      height={85}
+                      className="w-full h-full object-cover"
+                      alt="Sophia AI Tutoring System"
+                    />
+                  </div>
                   <div>
                     <span className="text-sm">June 2025</span>
                     <h2 className="text-sm font-RubikMedium">
@@ -55,16 +57,18 @@ function Homepage() {
               </div>
             </Link>
 
-             <Link href={"/dashboard/plotpact"}>
+            <Link href={"/dashboard/plotpact"}>
               <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
                 <div className="flex items-center gap-x-3">
-                  <Image
-                    src="/plotpact-thumb.png"
-                    width={120}
-                    height={120}
-                    className="rounded-lg object-cover"
-                    alt="PlotPact"
-                  />
+                  <div className="w-[120px] h-[85px] rounded-lg overflow-hidden shrink-0">
+                    <Image
+                      src="/plotpact-thumb.png"
+                      width={120}
+                      height={85}
+                      className="w-full h-full object-cover"
+                      alt="PlotPact"
+                    />
+                  </div>
                   <div>
                     <span className="text-sm">May 2025</span>
                     <h2 className="text-sm font-RubikMedium">
@@ -81,13 +85,15 @@ function Homepage() {
             <Link href={"/dashboard/dynamite"}>
               <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
                 <div className="flex items-center gap-x-3">
-                  <Image
-                    src="/dynamite-thumb.png"
-                    width={120}
-                    height={120}
-                    className="rounded-lg object-cover"
-                    alt="Dynamite Discussion Platform"
-                  />
+                  <div className="w-[120px] h-[85px] rounded-lg overflow-hidden shrink-0">
+                    <Image
+                      src="/dynamite-thumb.png"
+                      width={120}
+                      height={85}
+                      className="w-full h-full object-cover"
+                      alt="Dynamite Discussion Platform"
+                    />
+                  </div>
                   <div>
                     <span className="text-sm">Feb 2025</span>
                     <h2 className="text-sm font-RubikMedium">
@@ -104,13 +110,15 @@ function Homepage() {
             <Link href={"/dashboard/juno"}>
               <div className="hover:bg-neutral-800 duration-200 transition-all ease-in p-4">
                 <div className="flex items-center gap-x-3">
-                  <Image
-                    src="/juno-library.png"
-                    width={120}
-                    height={120}
-                    className="rounded-lg object-cover"
-                    alt="Juno Chrome Extension"
-                  />
+                  <div className="w-[120px] h-[85px] rounded-lg overflow-hidden shrink-0">
+                    <Image
+                      src="/juno-library.png"
+                      width={120}
+                      height={85}
+                      className="w-full h-full object-cover"
+                      alt="Juno Chrome Extension"
+                    />
+                  </div>
                   <div>
                     <span className="text-sm">May 2024</span>
                     <h2 className="text-sm font-RubikMedium">
