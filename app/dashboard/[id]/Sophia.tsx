@@ -255,8 +255,8 @@ const Sophia = () => {
                 className="text-[#d0d6e0] italic mb-4"
                 style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
               >
-                "I can tailor my approach... it tells you what you&apos;re good at 
-                which is encouraging."
+                &quot;I can tailor my approach... it tells you what you&apos;re good at 
+                which is encouraging.&quot;
               </p>
               <p className="text-[11px] tracking-[0.02em] text-[#62666d] uppercase font-medium">
                 Study Participant
@@ -338,7 +338,7 @@ const Sophia = () => {
                 style={{ fontSize: '0.9375rem', lineHeight: 1.6 }}
               >
                 Sophia operates within a standard IDE-based editor integrated with 
-                an "Ask Sophia" button that students can activate when they naturally 
+                an &quot;Ask Sophia&quot; button that students can activate when they naturally 
                 encounter difficulty. Students maintain complete control over their 
                 learning experience.
               </p>
