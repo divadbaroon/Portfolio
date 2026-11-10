@@ -250,7 +250,7 @@ function BrowserWindow({ k, onClose }) {
           </button>
         </div>
         <div className="sky-view">
-          {p.img && !isPdf && <img src={p.img} alt="" style={{ opacity: ready ? 0 : 1 }} />}
+          {!ready && <span className="sky-loading" aria-label="Loading" />}
           <iframe
             src={isPdf ? p.live + "#view=FitH&toolbar=0" : p.live}
             title={displayUrl(p.url)}
