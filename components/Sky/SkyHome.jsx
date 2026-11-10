@@ -128,7 +128,7 @@ export default function SkyHome() {
           </nav>
 
           <section aria-labelledby="rw-h" className="sky-recent">
-            <h2 id="rw-h">Recent work</h2>
+            <h2 id="rw-h">Timeline</h2>
             <ol>
               {WORK.map((row, i) => (
                 <li key={i}>
