@@ -278,82 +278,26 @@
 .sky-view { position: relative; flex: 1 1 auto; background-color: #f6f8fb; }
 .sky-view > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 0.25s ease; }
 .sky-view > iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #ffffff; transition: opacity 0.25s ease; }
+/* "processes" definition card */
+.sky-def { color: #0f1f3d; }
+.sky-def .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; }
+.sky-def .word {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.sky-def .pron { font-size: 15px; color: #6b7a92; }
+.sky-def .pos { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 17px; font-style: italic; color: #6b7a92; }
+.sky-def .sense { margin: 14px 0 0; font-size: 18px; line-height: 1.45; max-width: 440px; }
+.sky-def .why { margin-top: 20px; padding-top: 16px; border-top: 1px solid #e3e8ef; }
+.sky-def .why-label { font-size: 12px; line-height: 16px; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7a92; }
+.sky-def .why p { margin: 6px 0 0; font-size: 15px; line-height: 1.5; color: #3a4a66; max-width: 440px; }
+
 @keyframes sky-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes sky-rise { from { opacity: 0; transform: translateY(12px) scale(0.985); } to { opacity: 1; transform: none; } }
 
 @media (max-width: 999px) { .sky-aside { display: none; } }
 @media (max-width: 640px) { .sky-wrap { padding: 72px 16px 360px; } }
 @media (prefers-reduced-motion: reduce) { .sky-overlay, .sky-window { animation: none; } }
-
-/* ───────────── Essays ───────────── */
-.essay-page {
-  min-height: 100vh;
-  background-color: #ffffff;
-  color: #1a1a1a;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.essay-top {
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #ededed;
-}
-.essay-top a { color: #1a1a1a; text-decoration: none; font-weight: 600; font-size: 15px; }
-.essay-top a:hover { color: #555555; }
-.essay { max-width: 680px; margin: 0 auto; padding: 48px 24px 120px; }
-.essay h1 {
-  margin: 0;
-  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
-  font-size: 40px;
-  line-height: 1.15;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-}
-.essay-sub { margin: 12px 0 0; font-size: 20px; line-height: 1.4; color: #6b6b6b; }
-.essay-byline {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 28px;
-  padding: 14px 0;
-  border-top: 1px solid #ededed;
-  border-bottom: 1px solid #ededed;
-}
-.essay-byline img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-.essay-byline .name { font-size: 14px; font-weight: 600; }
-.essay-byline .date { margin-top: 2px; font-size: 13px; color: #737373; }
-.essay-body {
-  margin-top: 32px;
-  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
-  font-size: 19px;
-  line-height: 1.7;
-  color: #2b2b2b;
-}
-.essay-body p { margin: 0 0 22px; }
-.essay-body h2 { margin: 40px 0 14px; font-size: 24px; line-height: 1.3; font-weight: 700; color: #1a1a1a; }
-.essay-body pre {
-  margin: 0 0 22px;
-  padding: 16px 18px;
-  border-radius: 6px;
-  background-color: #f6f6f4;
-  overflow-x: auto;
-  font-size: 14.5px;
-  line-height: 1.6;
-}
-.essay-body code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-.essay-foot {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #ededed;
-  font-size: 15px;
-  line-height: 1.6;
-  color: #6b6b6b;
-}
-.essay-foot a { color: #1a1a1a; }
-@media (max-width: 640px) {
-  .essay { padding-top: 32px; }
-  .essay h1 { font-size: 32px; }
-  .essay-sub { font-size: 18px; }
-  .essay-body { font-size: 18px; }
-}

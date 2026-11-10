@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Clouds from "./Clouds";
+import ProcessDefinition from "./ProcessDefinition";
 import { PREVIEWS, displayUrl } from "./previews";
 
 const LINKS = [
@@ -180,6 +181,9 @@ export default function SkyHome() {
                   </svg>
                 </span>
               ))}
+              <div className="sky-note" style={{ opacity: active === "processes" ? 1 : 0 }}>
+                <ProcessDefinition />
+              </div>
               {KEYS.filter((k) => PREVIEWS[k].note).map((k) => (
                 <div key={k} className="sky-note" style={{ opacity: k === active ? 1 : 0 }}>
                   <div className="label">{PREVIEWS[k].note.label}</div>
@@ -189,7 +193,7 @@ export default function SkyHome() {
             </div>
             {clickable && (
               <span className="sky-hint">
-                {active === "processes" || (cur.live || "").endsWith(".pdf") ? "Click to read" : cur.video ? "Click to play" : cur.live ? "Click to explore" : cur.url.startsWith("mailto:") ? "Click to email" : "Opens in new tab ↗"}
+                {(cur.live || "").endsWith(".pdf") ? "Click to read" : cur.video ? "Click to play" : cur.live ? "Click to explore" : cur.url.startsWith("mailto:") ? "Click to email" : "Opens in new tab ↗"}
               </span>
             )}
           </div>
