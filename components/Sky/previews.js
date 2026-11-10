@@ -19,8 +19,7 @@ export const PREVIEWS = {
   x: { url: "https://x.com/DavidBarron410", img: "/previews/x.jpg" },
   scholar: { note: { label: "Google Scholar", body: "Profile coming soon." } },
   email: { url: "mailto:dbarron410@vt.edu", note: { label: "Email", body: "dbarron410@vt.edu" } },
-  // drawn by EssayNote.jsx; clicking opens the paper
-  processes: { url: "/papers/illusion-of-learning.pdf", live: "/papers/illusion-of-learning.pdf", note: { label: "Processes", body: "" } },
+  processes: { url: "/essays/illusion-of-learning", img: "/previews/essay.jpg", live: "/essays/illusion-of-learning" },
 };
 
 export const displayUrl = (u) =>
