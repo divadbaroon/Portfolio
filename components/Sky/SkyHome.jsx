@@ -25,21 +25,14 @@ const WORK = [
 ];
 
 const KEYS = Object.keys(PREVIEWS);
-const HOVER_TO_LIVE_MS = 250;
-
 export default function SkyHome() {
   const [active, setActive] = useState("engelbart"); // what the card shows once visible
   const [visible, setVisible] = useState(false); // hidden until the first hover; click-away hides it again
-  const [mounted, setMounted] = useState({}); // live pages we've started loading in the card
-  const [loaded, setLoaded] = useState({}); // …and which of them have finished
   const [open, setOpen] = useState(null); // key shown full size in the browser window
   const [top, setTop] = useState(192);
-  const [scale, setScale] = useState(0.42);
 
   const asideRef = useRef(null);
   const navRef = useRef(null);
-  const frameRef = useRef(null);
-  const liveTimer = useRef(0);
 
   // Card top sits just under the underline of the CV / Scholar / GitHub / X / Email row.
   const place = useCallback(() => {
@@ -47,7 +40,6 @@ export default function SkyHome() {
     const l = navRef.current && navRef.current.querySelector("a");
     if (!a || !l) return;
     setTop(Math.round(l.getBoundingClientRect().bottom - a.getBoundingClientRect().top) + 8);
-    if (frameRef.current) setScale(frameRef.current.clientWidth / 1280);
   }, []);
 
   useLayoutEffect(() => {
@@ -79,14 +71,6 @@ export default function SkyHome() {
       document.body.style.overflow = prev;
     };
   }, [open]);
-
-  // Load the live page once the user has lingered, so quick passes over the list stay cheap.
-  useEffect(() => {
-    clearTimeout(liveTimer.current);
-    if (!visible || !PREVIEWS[active].live || mounted[active]) return;
-    liveTimer.current = setTimeout(() => setMounted((m) => ({ ...m, [active]: true })), HOVER_TO_LIVE_MS);
-    return () => clearTimeout(liveTimer.current);
-  }, [active, visible, mounted]);
 
   const show = (k) => {
     setActive(k);
@@ -171,20 +155,16 @@ export default function SkyHome() {
             style={{ top, opacity: visible ? 1 : 0, pointerEvents: visible ? "auto" : "none" }}
             onClick={openCard}
           >
-            <div className="sky-frame" ref={frameRef}>
+            <div className="sky-frame">
               {KEYS.filter((k) => PREVIEWS[k].img).map((k) => (
                 <img key={k} src={PREVIEWS[k].img} alt="" style={{ opacity: k === active ? 1 : 0 }} />
               ))}
-              {KEYS.filter((k) => mounted[k]).map((k) => (
-                <iframe
-                  key={k}
-                  src={PREVIEWS[k].live}
-                  title=""
-                  tabIndex={-1}
-                  loading="eager"
-                  onLoad={() => setLoaded((m) => ({ ...m, [k]: true }))}
-                  style={{ transform: `scale(${scale})`, opacity: k === active && loaded[k] ? 1 : 0 }}
-                />
+              {KEYS.filter((k) => PREVIEWS[k].video).map((k) => (
+                <span key={k} className="sky-play" aria-hidden="true" style={{ opacity: k === active ? 1 : 0 }}>
+                  <svg viewBox="0 0 24 24" width="22" height="22">
+                    <path d="M8 5.5v13l10.5-6.5z" fill="currentColor" />
+                  </svg>
+                </span>
               ))}
               {KEYS.filter((k) => PREVIEWS[k].note).map((k) => (
                 <div key={k} className="sky-note" style={{ opacity: k === active ? 1 : 0 }}>
@@ -195,7 +175,7 @@ export default function SkyHome() {
             </div>
             {clickable && (
               <span className="sky-hint">
-                {active === "processes" ? "Click to read" : cur.live ? "Click to explore" : cur.url.startsWith("mailto:") ? "Click to email" : "Opens in new tab ↗"}
+                {active === "processes" ? "Click to read" : cur.video ? "Click to play" : cur.live ? "Click to explore" : cur.url.startsWith("mailto:") ? "Click to email" : "Opens in new tab ↗"}
               </span>
             )}
           </div>

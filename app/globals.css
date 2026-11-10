@@ -166,18 +166,25 @@
   -webkit-backdrop-filter: blur(14px);
 }
 .sky-frame > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.18s ease; }
-.sky-frame > iframe {
+.sky-play {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 1280px;
-  height: 800px;
-  border: 0;
-  background: #ffffff;
-  transform-origin: 0 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
+  left: 50%;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  color: #0f1f3d;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 6px 20px rgba(6, 26, 70, 0.28);
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
+.sky-card:hover .sky-play { transform: scale(1.06); }
 .sky-note {
   position: absolute;
   inset: 0;
