@@ -2,13 +2,12 @@
 //  img   – screenshot shown instantly on hover
 //  live  – a page that allows being embedded (only our own pages and YouTube); it loads
 //          live behind the screenshot and opens full size in the browser window on click.
-//          Everything else (GitHub, X, arXiv, Surplus…) is a screenshot, and clicking the
+//          Everything else (GitHub, X, arXiv…) is a screenshot, and clicking the
 //          card just opens the real site in a new tab.
 //  note  – a text card instead of a page
 export const PREVIEWS = {
   engelbart: { url: "https://mathetic.com/engelbart", img: "/previews/engelbart.jpg", live: "https://mathetic.com/engelbart" },
   mathetic: { url: "https://mathetic.com", img: "/previews/mathetic.jpg", live: "https://mathetic.com" },
-  surplus: { url: "https://surplus.dev", img: "/previews/surplus.jpg" },
   tutortrace: { url: "https://arxiv.org/abs/2608.26184", img: "/previews/tutortrace.jpg" },
   illusion: {
     url: "https://www.youtube.com/watch?v=KBjp7t9403c&list=PLGh2XVbXlSVI&index=11&t=318s",

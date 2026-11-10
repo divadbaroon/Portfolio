@@ -16,7 +16,7 @@ const LINKS = [
 // or grey context text. White = yours and interactive; grey = where it happened, not a link.
 const WORK = [
   { date: "Now", now: true, parts: [{ work: "engelbart", text: "Engelbart" }, { text: "Mathetic", muted: true }] },
-  { date: "Aug '26", parts: ["Cofounded", { work: "mathetic", text: "Mathetic" }, { sub: "surplus", text: "Surplus incubator", muted: true }] },
+  { date: "Aug '26", parts: ["Cofounded", { work: "mathetic", text: "Mathetic" }, { text: "Surplus incubator", muted: true }] },
   { date: "Jul '26", parts: [{ work: "tutortrace", text: "TutorTrace" }, { text: "UIST '26", muted: true }] },
   { date: "Jul '26", parts: [{ work: "illusion", text: "The Illusion of Learning" }, { text: "FutureHCI '26", muted: true }] },
   { date: "Jan '26", parts: ["Started PhD in CS", { text: "Virginia Tech", muted: true }] },
@@ -28,8 +28,8 @@ const KEYS = Object.keys(PREVIEWS);
 const HOVER_TO_LIVE_MS = 250;
 
 export default function SkyHome() {
-  const [active, setActive] = useState("engelbart"); // what the card shows
-  const [visible, setVisible] = useState(true); // click-away hides it until the next hover
+  const [active, setActive] = useState("engelbart"); // what the card shows once visible
+  const [visible, setVisible] = useState(false); // hidden until the first hover; click-away hides it again
   const [mounted, setMounted] = useState({}); // live pages we've started loading in the card
   const [loaded, setLoaded] = useState({}); // …and which of them have finished
   const [open, setOpen] = useState(null); // key shown full size in the browser window
@@ -150,7 +150,7 @@ export default function SkyHome() {
                           {sep}
                           <a
                             href={PREVIEWS[k].url}
-                            className={p.work ? "work" : p.muted ? "sub muted" : "sub"}
+                            className={p.work ? "work" : "sub"}
                             {...pv(k)}
                           >
                             {p.text}
