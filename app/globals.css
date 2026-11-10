@@ -247,9 +247,9 @@
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   height: 44px;
-  padding: 0 10px 0 14px;
+  padding: 0 8px 0 14px;
   background-color: #eef2f8;
   border-bottom: 1px solid #d9e0ea;
   color: #1c2b45;
@@ -274,18 +274,24 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 30px;
+  gap: 6px;
+  height: 30px;
   padding: 0 10px;
   border-radius: 8px;
   border: 0;
   background: transparent;
   color: #1c2b45;
   font: inherit;
+  line-height: 1;
   text-decoration: none;
   cursor: pointer;
 }
 .sky-root .sky-bar a.btn:hover, .sky-bar .btn:hover { background-color: #dde4ee; color: #1c2b45; }
-.sky-bar .close { width: 32px; padding: 0; font-size: 20px; line-height: 1; }
+.sky-bar .btn svg { display: block; flex: 0 0 auto; }
+.sky-window:focus { outline: none; }
+.sky-bar .btn:focus { outline: none; }
+.sky-bar .btn:focus-visible { box-shadow: 0 0 0 2px #1866c2; }
+.sky-bar .close { width: 30px; padding: 0; margin-left: -6px; }
 .sky-view { position: relative; flex: 1 1 auto; background-color: #f6f8fb; }
 .sky-loading {
   position: absolute;

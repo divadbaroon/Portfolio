@@ -228,13 +228,14 @@ export default function SkyHome() {
 
 function BrowserWindow({ k, onClose }) {
   const p = PREVIEWS[k];
-  const closeRef = useRef(null);
+  const winRef = useRef(null);
   const [ready, setReady] = useState(false);
   const isPdf = (p.live || "").endsWith(".pdf");
-  useEffect(() => closeRef.current && closeRef.current.focus(), []);
+  // Focus the window itself (not the close button) so keyboard users land inside it without a ring on open.
+  useEffect(() => winRef.current && winRef.current.focus(), []);
   return (
     <div className="sky-overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="sky-window" role="dialog" aria-modal="true" aria-label={displayUrl(p.url)}>
+      <div className="sky-window" role="dialog" aria-modal="true" aria-label={displayUrl(p.url)} tabIndex={-1} ref={winRef}>
         <div className="sky-bar">
           <span className="dots" aria-hidden="true">
             <i />
@@ -243,10 +244,15 @@ function BrowserWindow({ k, onClose }) {
           </span>
           <span className="url">{displayUrl(p.url)}</span>
           <a className="btn" href={p.url} target="_blank" rel="noopener noreferrer">
-            Open in new tab ↗
+            Open in new tab
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path d="M5.5 4.5h6v6M11.5 4.5l-7 7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </a>
-          <button className="btn close" ref={closeRef} onClick={onClose} aria-label="Close">
-            ×
+          <button className="btn close" onClick={onClose} aria-label="Close">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
           </button>
         </div>
         <div className="sky-view">
