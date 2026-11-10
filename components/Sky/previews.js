@@ -8,7 +8,7 @@
 export const PREVIEWS = {
   engelbart: { url: "https://mathetic.com/engelbart", img: "/previews/engelbart.jpg", live: "https://mathetic.com/engelbart" },
   mathetic: { url: "https://mathetic.com", img: "/previews/mathetic.jpg", live: "https://mathetic.com" },
-  tutortrace: { url: "https://arxiv.org/abs/2608.26184", img: "/previews/tutortrace.jpg" },
+  tutortrace: { url: "https://arxiv.org/abs/2608.26184", img: "/previews/tutortrace.jpg", live: "/papers/tutortrace.pdf" },
   illusion: {
     url: "https://www.youtube.com/watch?v=KBjp7t9403c&list=PLGh2XVbXlSVI&index=11&t=318s",
     img: "/previews/illusion.jpg",
@@ -19,7 +19,9 @@ export const PREVIEWS = {
   x: { url: "https://x.com/DavidBarron410", img: "/previews/x.jpg" },
   scholar: { note: { label: "Google Scholar", body: "Profile coming soon." } },
   email: { url: "mailto:dbarron410@vt.edu", note: { label: "Email", body: "dbarron410@vt.edu" } },
-  processes: { note: { label: "Processes", body: "" } }, // drawn by ProcessNote.jsx
+  // drawn by EssayNote.jsx; clicking opens the paper
+  processes: { url: "/papers/illusion-of-learning.pdf", live: "/papers/illusion-of-learning.pdf", note: { label: "Processes", body: "" } },
 };
 
-export const displayUrl = (u) => (u || "").replace(/^https?:\/\/(www\.)?/, "").replace(/^mailto:/, "").replace(/\/$/, "");
+export const displayUrl = (u) =>
+  (u && u.startsWith("/") ? "davidbarron.dev" + u : u || "").replace(/^https?:\/\/(www\.)?/, "").replace(/^mailto:/, "").replace(/\/$/, "");

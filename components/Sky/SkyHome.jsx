@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Clouds from "./Clouds";
-import ProcessNote from "./ProcessNote";
+import EssayNote from "./EssayNote";
 import { PREVIEWS, displayUrl } from "./previews";
 
 const LINKS = [
@@ -187,8 +187,8 @@ export default function SkyHome() {
                   style={{ transform: `scale(${scale})`, opacity: k === active && loaded[k] ? 1 : 0 }}
                 />
               ))}
-              <div className="sky-note sky-note-proc" style={{ opacity: active === "processes" ? 1 : 0 }}>
-                <ProcessNote on={visible && active === "processes"} />
+              <div className="sky-note sky-note-essay" style={{ opacity: active === "processes" ? 1 : 0 }}>
+                <EssayNote />
               </div>
               {KEYS.filter((k) => PREVIEWS[k].note && k !== "processes").map((k) => (
                 <div key={k} className="sky-note" style={{ opacity: k === active ? 1 : 0 }}>
@@ -197,7 +197,7 @@ export default function SkyHome() {
                 </div>
               ))}
             </div>
-            {clickable && (
+            {clickable && active !== "processes" && (
               <span className="sky-hint">
                 {cur.live ? "Click to explore" : cur.url.startsWith("mailto:") ? "Click to email" : "Opens in new tab ↗"}
               </span>
@@ -234,7 +234,7 @@ function BrowserWindow({ k, onClose }) {
           </button>
         </div>
         <div className="sky-view">
-          <img src={p.img} alt="" style={{ opacity: ready ? 0 : 1 }} />
+          {p.img && <img src={p.img} alt="" style={{ opacity: ready ? 0 : 1 }} />}
           <iframe
             src={p.live}
             title={displayUrl(p.url)}
