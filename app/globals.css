@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -278,22 +279,17 @@
 .sky-view { position: relative; flex: 1 1 auto; background-color: #f6f8fb; }
 .sky-view > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 0.25s ease; }
 .sky-view > iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #ffffff; transition: opacity 0.25s ease; }
-/* "processes" definition card */
-.sky-def { color: #0f1f3d; }
-.sky-def .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; }
-.sky-def .word {
-  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  font-size: 36px;
-  line-height: 1.1;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-.sky-def .pron { font-size: 15px; color: #6b7a92; }
-.sky-def .pos { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 17px; font-style: italic; color: #6b7a92; }
-.sky-def .sense { margin: 14px 0 0; font-size: 18px; line-height: 1.45; max-width: 440px; }
-.sky-def .why { margin-top: 20px; padding-top: 16px; border-top: 1px solid #e3e8ef; }
-.sky-def .why-label { font-size: 12px; line-height: 16px; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7a92; }
-.sky-def .why p { margin: 6px 0 0; font-size: 15px; line-height: 1.5; color: #3a4a66; max-width: 440px; }
+/* "processes" definition card (sizes scale with the card's width; tuned at 536px) */
+.sky-frame { container-type: inline-size; }
+.sky-note:has(.sky-def) { padding: 5.6cqw 7.5cqw; background-color: #fbf9f4; }
+.sky-def { font-family: Newsreader, Georgia, serif; color: #1c1b19; }
+.sky-def .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 1.9cqw; }
+.sky-def .word { font-size: 7.1cqw; line-height: 1; font-weight: 600; }
+.sky-def .pron { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 2.8cqw; color: #8a867c; }
+.sky-def .pos { font-size: 3.7cqw; color: #8a867c; }
+.sky-def .sense { margin: 1.9cqw 0 0; font-size: 3.9cqw; line-height: 1.48; }
+.sky-def .sense.first { margin-top: 3.4cqw; }
+.sky-def .sense b { font-weight: 600; }
 
 @keyframes sky-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes sky-rise { from { opacity: 0; transform: translateY(12px) scale(0.985); } to { opacity: 1; transform: none; } }
