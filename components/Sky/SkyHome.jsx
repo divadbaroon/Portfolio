@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Clouds from "./Clouds";
-import ProcessDefinition from "./ProcessDefinition";
 import { PREVIEWS, displayUrl } from "./previews";
 
 const LINKS = [
@@ -30,7 +29,6 @@ export default function SkyHome() {
   const [active, setActive] = useState("engelbart"); // what the card shows once visible
   const [visible, setVisible] = useState(false); // hidden until the first hover; click-away hides it again
   const [open, setOpen] = useState(null); // key shown full size in the browser window
-  const [defOpen, setDefOpen] = useState(false); // dictionary popover under "processes"
   const [top, setTop] = useState(192);
 
   const asideRef = useRef(null);
@@ -78,11 +76,6 @@ export default function SkyHome() {
     setActive(k);
     setVisible(true);
   };
-  // "processes" gets a small dictionary popover right under the word instead of the side card.
-  const openDef = () => {
-    setDefOpen(true);
-    setVisible(false);
-  };
   const pv = (k) => ({ "data-pv": k, onMouseEnter: () => show(k), onFocus: () => show(k) });
 
   const cur = PREVIEWS[active];
@@ -105,20 +98,7 @@ export default function SkyHome() {
           <h1 className="sky-name">David Barron</h1>
           <p className="sky-intro">
             I build systems that understand and reward the{" "}
-            <span className="sky-term">
-              <em
-                tabIndex={0}
-                className="sky-processes"
-                aria-describedby={defOpen ? "process-def" : undefined}
-                onMouseEnter={openDef}
-                onFocus={openDef}
-                onMouseLeave={() => setDefOpen(false)}
-                onBlur={() => setDefOpen(false)}
-              >
-                processes
-              </em>
-              {defOpen && <ProcessDefinition id="process-def" />}
-            </span>{" "}
+            <em>processes</em>{" "}
             behind learning and exceptional research.
           </p>
           <nav className="sky-links" aria-label="Elsewhere" ref={navRef}>
