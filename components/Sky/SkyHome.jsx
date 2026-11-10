@@ -25,6 +25,9 @@ const WORK = [
 ];
 
 const KEYS = Object.keys(PREVIEWS);
+// Every outbound link opens in a new tab so the homepage stays put.
+const newTab = (href) =>
+  href && !href.startsWith("mailto:") && href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {};
 export default function SkyHome() {
   const [active, setActive] = useState("engelbart"); // what the card shows once visible
   const [visible, setVisible] = useState(false); // hidden until the first hover; click-away hides it again
@@ -103,7 +106,7 @@ export default function SkyHome() {
           </p>
           <nav className="sky-links" aria-label="Elsewhere" ref={navRef}>
             {LINKS.map((l) => (
-              <a key={l.k} href={l.href} {...pv(l.k)}>
+              <a key={l.k} href={l.href} {...newTab(l.href)} {...pv(l.k)}>
                 {l.label}
               </a>
             ))}
@@ -132,6 +135,7 @@ export default function SkyHome() {
                           {sep}
                           <a
                             href={PREVIEWS[k].url}
+                            {...newTab(PREVIEWS[k].url)}
                             className={p.work ? "work" : "sub"}
                             {...pv(k)}
                           >
@@ -203,6 +207,7 @@ function BrowserWindow({ k, onClose }) {
   const p = PREVIEWS[k];
   const closeRef = useRef(null);
   const [ready, setReady] = useState(false);
+  const isPdf = (p.live || "").endsWith(".pdf");
   useEffect(() => closeRef.current && closeRef.current.focus(), []);
   return (
     <div className="sky-overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
@@ -222,9 +227,9 @@ function BrowserWindow({ k, onClose }) {
           </button>
         </div>
         <div className="sky-view">
-          {p.img && <img src={p.img} alt="" style={{ opacity: ready ? 0 : 1 }} />}
+          {p.img && !isPdf && <img src={p.img} alt="" style={{ opacity: ready ? 0 : 1 }} />}
           <iframe
-            src={p.live}
+            src={isPdf ? p.live + "#view=FitH&toolbar=0" : p.live}
             title={displayUrl(p.url)}
             allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
             allowFullScreen
