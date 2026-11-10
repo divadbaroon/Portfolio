@@ -19,12 +19,7 @@ export const PREVIEWS = {
   x: { url: "https://x.com/DavidBarron410", img: "/previews/x.jpg" },
   scholar: { note: { label: "Google Scholar", body: "Profile coming soon." } },
   email: { url: "mailto:dbarron410@vt.edu", note: { label: "Email", body: "dbarron410@vt.edu" } },
-  processes: {
-    note: {
-      label: "Processes",
-      body: "Most systems judge the final answer. I study how people get there: the struggle, the questions, the detours. That is where learning and discovery actually happen.",
-    },
-  },
+  processes: { note: { label: "Processes", body: "" } }, // drawn by ProcessNote.jsx
 };
 
 export const displayUrl = (u) => (u || "").replace(/^https?:\/\/(www\.)?/, "").replace(/^mailto:/, "").replace(/\/$/, "");

@@ -279,6 +279,30 @@
 .sky-view { position: relative; flex: 1 1 auto; background-color: #f6f8fb; }
 .sky-view > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: opacity 0.25s ease; }
 .sky-view > iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #ffffff; transition: opacity 0.25s ease; }
+/* processes card */
+.sky-note.sky-note-proc { padding: 26px 30px 24px; justify-content: space-between; gap: 0; }
+.sky-proc { display: flex; flex-direction: column; height: 100%; justify-content: space-between; }
+.sky-proc .label { font-size: 13px; line-height: 18px; letter-spacing: 0.04em; text-transform: uppercase; color: #5b6b85; }
+.sky-proc svg { width: 100%; height: auto; display: block; overflow: visible; }
+.sky-proc svg text { font-family: inherit; font-size: 12px; fill: #5b6b85; }
+.sky-proc svg .who { font-size: 13px; font-weight: 600; fill: #0f1f3d; }
+.sky-proc svg .col { text-anchor: end; font-size: 11px; letter-spacing: 0.02em; fill: #8794a8; }
+.sky-proc svg .meta { font-size: 12px; fill: #6b7a92; }
+.sky-proc svg .start { fill: #0f1f3d; }
+.sky-proc svg .a { stroke: #9fb0c8; stroke-width: 2; stroke-dasharray: 410; stroke-dashoffset: 410; transition: stroke-dashoffset 0.45s ease; }
+.sky-proc svg .b { fill: none; stroke: #1866c2; stroke-width: 2.25; stroke-linecap: round; stroke-dasharray: 520; stroke-dashoffset: 520; transition: stroke-dashoffset 1.15s cubic-bezier(0.4, 0, 0.2, 1) 0.1s; }
+.sky-proc svg .nodes circle { fill: #ffffff; stroke: #1866c2; stroke-width: 2; opacity: 0; transition: opacity 0.25s ease; }
+.sky-proc svg .nodes text { text-anchor: middle; font-size: 11.5px; fill: #1866c2; opacity: 0; transition: opacity 0.25s ease; }
+.sky-proc svg .done circle { fill: #e7f0fc; stroke: #1866c2; stroke-width: 1.5; }
+.sky-proc svg .done path { fill: none; stroke: #1866c2; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sky-proc.is-on svg .a, .sky-proc.is-on svg .b { stroke-dashoffset: 0; }
+.sky-proc.is-on svg .nodes circle, .sky-proc.is-on svg .nodes text { opacity: 1; }
+.sky-proc .line { margin: 0; font-size: 17px; line-height: 1.35; color: #0f1f3d; }
+@media (prefers-reduced-motion: reduce) {
+  .sky-proc svg .a, .sky-proc svg .b { stroke-dashoffset: 0; transition: none; }
+  .sky-proc svg .nodes circle, .sky-proc svg .nodes text { opacity: 1; transition: none; }
+}
+
 @keyframes sky-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes sky-rise { from { opacity: 0; transform: translateY(12px) scale(0.985); } to { opacity: 1; transform: none; } }
 

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Clouds from "./Clouds";
+import ProcessNote from "./ProcessNote";
 import { PREVIEWS, displayUrl } from "./previews";
 
 const LINKS = [
@@ -186,7 +187,10 @@ export default function SkyHome() {
                   style={{ transform: `scale(${scale})`, opacity: k === active && loaded[k] ? 1 : 0 }}
                 />
               ))}
-              {KEYS.filter((k) => PREVIEWS[k].note).map((k) => (
+              <div className="sky-note sky-note-proc" style={{ opacity: active === "processes" ? 1 : 0 }}>
+                <ProcessNote on={visible && active === "processes"} />
+              </div>
+              {KEYS.filter((k) => PREVIEWS[k].note && k !== "processes").map((k) => (
                 <div key={k} className="sky-note" style={{ opacity: k === active ? 1 : 0 }}>
                   <div className="label">{PREVIEWS[k].note.label}</div>
                   <div className="body">{PREVIEWS[k].note.body}</div>
