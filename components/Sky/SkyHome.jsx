@@ -6,7 +6,7 @@ import { PREVIEWS, displayUrl } from "./previews";
 
 const LINKS = [
   { k: "cv", href: "/david_barron_resume.pdf", label: "CV" },
-  { k: "scholar", href: "#", label: "Google Scholar" },
+  // { k: "scholar", href: "TODO: profile URL", label: "Google Scholar" }, — add back once the profile exists
   { k: "github", href: "https://github.com/divadbaroon", label: "GitHub" },
   { k: "x", href: "https://x.com/DavidBarron410", label: "X" },
   { k: "email", href: "mailto:dbarron410@vt.edu", label: "Email" },
