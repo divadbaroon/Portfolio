@@ -1,6 +1,6 @@
 // What the preview card shows for each link.
 //  img   – image shown on hover (the card only ever shows images; nothing loads live in it)
-//  video – the img is a still from a video; the card shows a play button
+//  video – the img is a video thumbnail; the card shows the YouTube play button
 //  live  – a page that allows being embedded (only our own pages and YouTube); it opens
 //          full size in the browser window when the card is clicked.
 //          Everything else (GitHub, X, arXiv…) is a screenshot, and clicking the
@@ -9,11 +9,13 @@
 export const PREVIEWS = {
   engelbart: { url: "https://mathetic.com/engelbart", img: "/previews/engelbart.jpg", live: "https://mathetic.com/engelbart" },
   mathetic: { url: "https://mathetic.com", img: "/previews/mathetic.jpg", live: "https://mathetic.com" },
-  tutortrace: { url: "https://arxiv.org/abs/2608.26184", img: "/previews/tutortrace.jpg" }, // Figure 1: the student interface
+  tutortrace: { url: "https://arxiv.org/abs/2608.26184", img: "/previews/tutortrace.jpg", live: "/papers/tutortrace.pdf" }, // first page of the paper
   illusion: {
     url: "https://www.youtube.com/watch?v=KBjp7t9403c&list=PLGh2XVbXlSVI&index=11&t=318s",
-    img: "/previews/talk.jpg", // title-slide frame from the recording
-    video: true,
+    // YouTube's own thumbnail, shown with the standard YouTube play button (the usual "video facade")
+    img: "https://i.ytimg.com/vi/KBjp7t9403c/maxresdefault.jpg",
+    imgFallback: "https://i.ytimg.com/vi/KBjp7t9403c/hqdefault.jpg",
+    video: "youtube",
     live: "https://www.youtube-nocookie.com/embed/KBjp7t9403c?start=318&autoplay=1&rel=0",
   },
   cv: { url: "/david_barron_resume.pdf", img: "/previews/cv.jpg", live: "/david_barron_resume.pdf" },

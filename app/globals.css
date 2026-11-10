@@ -170,21 +170,14 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 60px;
-  height: 60px;
-  margin: -30px 0 0 -30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 3px;
-  box-sizing: border-box;
-  border-radius: 50%;
-  color: #0f1f3d;
-  background-color: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 6px 20px rgba(6, 26, 70, 0.28);
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  width: 68px;
+  height: 48px;
+  margin: -24px 0 0 -34px;
+  transition: opacity 0.18s ease;
 }
-.sky-card:hover .sky-play { transform: scale(1.06); }
+.sky-play svg { display: block; }
+.sky-play .bg { fill: #212121; fill-opacity: 0.8; transition: fill 0.1s ease, fill-opacity 0.1s ease; }
+.sky-card:hover .sky-play .bg { fill: #ff0000; fill-opacity: 1; }
 .sky-note {
   position: absolute;
   inset: 0;
