@@ -1,0 +1,249 @@
+"use client";
+
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import Clouds from "./Clouds";
+import { PREVIEWS, displayUrl } from "./previews";
+
+const LINKS = [
+  { k: "cv", href: "/david_barron_resume.pdf", label: "CV" },
+  { k: "scholar", href: "#", label: "Google Scholar" },
+  { k: "github", href: "https://github.com/divadbaroon", label: "GitHub" },
+  { k: "x", href: "https://x.com/DavidBarron410", label: "X" },
+  { k: "email", href: "mailto:dbarron410@vt.edu", label: "Email" },
+];
+
+// Each row: date, then parts. A part is plain text, a "work" link (underlined) or a "sub" link (quiet).
+const WORK = [
+  { date: "Now", now: true, parts: [{ work: "engelbart", text: "Engelbart" }, { sub: "mathetic", text: "Mathetic", muted: true }] },
+  { date: "Aug '26", parts: ["Cofounded", { sub: "mathetic", text: "Mathetic" }, { sub: "surplus", text: "Surplus incubator", muted: true }] },
+  { date: "Jul '26", parts: [{ work: "tutortrace", text: "TutorTrace" }, { sub: "uist", text: "UIST '26", muted: true }] },
+  { date: "Jul '26", parts: [{ work: "illusion", text: "The Illusion of Learning" }, { sub: "futurehci", text: "FutureHCI '26", muted: true }] },
+  { date: "Jan '26", parts: ["Started PhD in CS", { sub: "vt", text: "Virginia Tech", muted: true }] },
+  { date: "Jan '25", parts: ["Started MS in CS", { sub: "vt", text: "Virginia Tech", muted: true }] },
+  { date: "Oct '24", parts: ["Research intern", { sub: "prime", text: "PRIME Lab", muted: true }] },
+];
+
+const KEYS = Object.keys(PREVIEWS);
+const HOVER_TO_LIVE_MS = 250;
+
+export default function SkyHome() {
+  const [active, setActive] = useState("engelbart"); // what the card shows
+  const [visible, setVisible] = useState(true); // click-away hides it until the next hover
+  const [mounted, setMounted] = useState({}); // live pages we've started loading in the card
+  const [loaded, setLoaded] = useState({}); // …and which of them have finished
+  const [open, setOpen] = useState(null); // key shown full size in the browser window
+  const [top, setTop] = useState(192);
+  const [scale, setScale] = useState(0.42);
+
+  const asideRef = useRef(null);
+  const navRef = useRef(null);
+  const frameRef = useRef(null);
+  const liveTimer = useRef(0);
+
+  // Card top sits just under the underline of the CV / Scholar / GitHub / X / Email row.
+  const place = useCallback(() => {
+    const a = asideRef.current;
+    const l = navRef.current && navRef.current.querySelector("a");
+    if (!a || !l) return;
+    setTop(Math.round(l.getBoundingClientRect().bottom - a.getBoundingClientRect().top) + 8);
+    if (frameRef.current) setScale(frameRef.current.clientWidth / 1280);
+  }, []);
+
+  useLayoutEffect(() => {
+    place();
+    window.addEventListener("resize", place);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+    return () => window.removeEventListener("resize", place);
+  }, [place]);
+
+  // Clicking anywhere except a previewable link, the card or the browser window hides the card.
+  useEffect(() => {
+    const onDown = (e) => {
+      if (e.target.closest && e.target.closest("[data-pv], .sky-card, .sky-overlay")) return;
+      setVisible(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    return () => document.removeEventListener("mousedown", onDown);
+  }, []);
+
+  // Esc closes the browser window; the page behind doesn't scroll while it's open.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && setOpen(null);
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
+  // Load the live page once the user has lingered, so quick passes over the list stay cheap.
+  useEffect(() => {
+    clearTimeout(liveTimer.current);
+    if (!visible || !PREVIEWS[active].live || mounted[active]) return;
+    liveTimer.current = setTimeout(() => setMounted((m) => ({ ...m, [active]: true })), HOVER_TO_LIVE_MS);
+    return () => clearTimeout(liveTimer.current);
+  }, [active, visible, mounted]);
+
+  const show = (k) => {
+    setActive(k);
+    setVisible(true);
+  };
+  const pv = (k) => ({ "data-pv": k, onMouseEnter: () => show(k), onFocus: () => show(k) });
+
+  const cur = PREVIEWS[active];
+  const expandable = !!cur.img;
+  const openCard = () => {
+    if (expandable) setOpen(active);
+    else if (cur.url) window.location.href = cur.url;
+  };
+
+  return (
+    <div className="sky-root">
+      <div aria-hidden="true" className="sky-glow" />
+      <Clouds />
+
+      <div className="sky-wrap">
+        <main className="sky-main">
+          <h1 className="sky-name">David Barron</h1>
+          <p className="sky-intro">
+            I build systems that understand and reward the{" "}
+            <em tabIndex={0} className="sky-processes" {...pv("processes")}>
+              processes
+            </em>{" "}
+            behind learning and exceptional research.
+          </p>
+          <nav className="sky-links" aria-label="Elsewhere" ref={navRef}>
+            {LINKS.map((l) => (
+              <a key={l.k} href={l.href} {...pv(l.k)}>
+                {l.label}
+              </a>
+            ))}
+          </nav>
+
+          <section aria-labelledby="rw-h" className="sky-recent">
+            <h2 id="rw-h">Recent work</h2>
+            <ol>
+              {WORK.map((row, i) => (
+                <li key={i}>
+                  <span className={row.now ? "sky-date now" : "sky-date"}>{row.date}</span>
+                  <span>
+                    {row.parts.map((p, j) => {
+                      const sep = j ? " " : "";
+                      if (typeof p === "string") return sep + p;
+                      const k = p.work || p.sub;
+                      return (
+                        <span key={j}>
+                          {sep}
+                          <a
+                            href={PREVIEWS[k].url}
+                            className={p.work ? "work" : p.muted ? "sub muted" : "sub"}
+                            {...pv(k)}
+                          >
+                            {p.text}
+                          </a>
+                        </span>
+                      );
+                    })}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </main>
+
+        <aside className="sky-aside" aria-hidden="true" ref={asideRef}>
+          <div
+            className={"sky-card" + (expandable ? " expandable" : "")}
+            style={{ top, opacity: visible ? 1 : 0, pointerEvents: visible ? "auto" : "none" }}
+            onClick={openCard}
+          >
+            <div className="sky-frame" ref={frameRef}>
+              {KEYS.filter((k) => PREVIEWS[k].img).map((k) => (
+                <img key={k} src={PREVIEWS[k].img} alt="" style={{ opacity: k === active ? 1 : 0 }} />
+              ))}
+              {KEYS.filter((k) => mounted[k]).map((k) => (
+                <iframe
+                  key={k}
+                  src={PREVIEWS[k].live}
+                  title=""
+                  tabIndex={-1}
+                  loading="eager"
+                  onLoad={() => setLoaded((m) => ({ ...m, [k]: true }))}
+                  style={{ transform: `scale(${scale})`, opacity: k === active && loaded[k] ? 1 : 0 }}
+                />
+              ))}
+              {KEYS.filter((k) => PREVIEWS[k].note).map((k) => (
+                <div key={k} className="sky-note" style={{ opacity: k === active ? 1 : 0 }}>
+                  <div className="label">{PREVIEWS[k].note.label}</div>
+                  <div className="body">{PREVIEWS[k].note.body}</div>
+                </div>
+              ))}
+            </div>
+            {expandable && (
+              <span className="sky-hint">
+                {cur.live ? (loaded[active] ? "Live · click to use" : "Click to open") : "Click to open"}
+              </span>
+            )}
+          </div>
+        </aside>
+      </div>
+
+      {open && <BrowserWindow k={open} onClose={() => setOpen(null)} />}
+    </div>
+  );
+}
+
+function BrowserWindow({ k, onClose }) {
+  const p = PREVIEWS[k];
+  const closeRef = useRef(null);
+  const [ready, setReady] = useState(false);
+  useEffect(() => closeRef.current && closeRef.current.focus(), []);
+  return (
+    <div className="sky-overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="sky-window" role="dialog" aria-modal="true" aria-label={displayUrl(p.url)}>
+        <div className="sky-bar">
+          <span className="dots" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span className="url">{displayUrl(p.url)}</span>
+          <a className="btn" href={p.url} target="_blank" rel="noopener noreferrer">
+            Open in new tab ↗
+          </a>
+          <button className="btn close" ref={closeRef} onClick={onClose} aria-label="Close">
+            ×
+          </button>
+        </div>
+        <div className="sky-view">
+          {p.live ? (
+            <>
+              <img src={p.img} alt="" style={{ opacity: ready ? 0 : 1 }} />
+              <iframe
+                src={p.live}
+                title={displayUrl(p.url)}
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                allowFullScreen
+                onLoad={() => setReady(true)}
+                style={{ opacity: ready ? 1 : 0 }}
+              />
+            </>
+          ) : (
+            <>
+              <img src={p.img} alt={"Screenshot of " + displayUrl(p.url)} />
+              <div className="sky-blocked">
+                <p>{displayUrl(p.url).split("/")[0]} can’t be shown inside another page.</p>
+                <a href={p.url} target="_blank" rel="noopener noreferrer">
+                  Visit the site ↗
+                </a>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

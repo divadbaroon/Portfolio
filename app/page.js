@@ -1,15 +1,10 @@
-import Dashboard from "@/app/dashboard/page";
-import Left from "@/app/dashboard/Left/page";
-import View from "@/app/ui/dashboard/View/page";
+import SkyHome from "@/components/Sky/SkyHome";
+
+export const metadata = {
+  title: "David Barron",
+  description: "I build systems that understand and reward the processes behind learning and exceptional research.",
+};
 
 export default function Home() {
-  return (
-    <div className="max-w-5xl mx-auto">
-      <div className="gap-4 flex md:mt-5 flex-col md:flex-row">
-        <Left />
-        <Dashboard />
-        <View />
-      </div>
-    </div>
-  );
+  return <SkyHome />;
 }
