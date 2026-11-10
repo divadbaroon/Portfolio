@@ -12,15 +12,16 @@ const LINKS = [
   { k: "email", href: "mailto:dbarron410@vt.edu", label: "Email" },
 ];
 
-// Each row: date, then parts. A part is plain text, a "work" link (underlined) or a "sub" link (quiet).
+// Each row: date, then parts. A part is plain text, a "work" link (underlined), a "sub" link (quiet),
+// or grey context text. White = yours and interactive; grey = where it happened, not a link.
 const WORK = [
-  { date: "Now", now: true, parts: [{ work: "engelbart", text: "Engelbart" }, { sub: "mathetic", text: "Mathetic", muted: true }] },
-  { date: "Aug '26", parts: ["Cofounded", { sub: "mathetic", text: "Mathetic" }, { sub: "surplus", text: "Surplus incubator", muted: true }] },
-  { date: "Jul '26", parts: [{ work: "tutortrace", text: "TutorTrace" }, { sub: "uist", text: "UIST '26", muted: true }] },
-  { date: "Jul '26", parts: [{ work: "illusion", text: "The Illusion of Learning" }, { sub: "futurehci", text: "FutureHCI '26", muted: true }] },
-  { date: "Jan '26", parts: ["Started PhD in CS", { sub: "vt", text: "Virginia Tech", muted: true }] },
-  { date: "Jan '25", parts: ["Started MS in CS", { sub: "vt", text: "Virginia Tech", muted: true }] },
-  { date: "Oct '24", parts: ["Research intern", { sub: "prime", text: "PRIME Lab", muted: true }] },
+  { date: "Now", now: true, parts: [{ work: "engelbart", text: "Engelbart" }, { text: "Mathetic", muted: true }] },
+  { date: "Aug '26", parts: ["Cofounded", { sub: "mathetic", text: "Mathetic" }, "at", { sub: "surplus", text: "Surplus" }] },
+  { date: "Jul '26", parts: [{ work: "tutortrace", text: "TutorTrace" }, { text: "UIST '26", muted: true }] },
+  { date: "Jul '26", parts: [{ work: "illusion", text: "The Illusion of Learning" }, { text: "FutureHCI '26", muted: true }] },
+  { date: "Jan '26", parts: ["Started PhD in CS", { text: "Virginia Tech", muted: true }] },
+  { date: "Jan '25", parts: ["Started MS in CS", { text: "Virginia Tech", muted: true }] },
+  { date: "Oct '24", parts: ["Research intern", { text: "PRIME Lab", muted: true }] },
 ];
 
 const KEYS = Object.keys(PREVIEWS);
@@ -94,10 +95,13 @@ export default function SkyHome() {
   const pv = (k) => ({ "data-pv": k, onMouseEnter: () => show(k), onFocus: () => show(k) });
 
   const cur = PREVIEWS[active];
-  const expandable = !!cur.img;
+  const expandable = !!cur.live;
+  const clickable = !!(cur.live || cur.url);
+  // Pages that allow embedding open full size in the browser window; everything else opens the real site.
   const openCard = () => {
-    if (expandable) setOpen(active);
-    else if (cur.url) window.location.href = cur.url;
+    if (cur.live) setOpen(active);
+    else if (cur.url && cur.url.startsWith("mailto:")) window.location.href = cur.url;
+    else if (cur.url) window.open(cur.url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -134,12 +138,19 @@ export default function SkyHome() {
                       const sep = j ? " " : "";
                       if (typeof p === "string") return sep + p;
                       const k = p.work || p.sub;
+                      if (!k)
+                        return (
+                          <span key={j}>
+                            {sep}
+                            <span className="ctx">{p.text}</span>
+                          </span>
+                        );
                       return (
                         <span key={j}>
                           {sep}
                           <a
                             href={PREVIEWS[k].url}
-                            className={p.work ? "work" : p.muted ? "sub muted" : "sub"}
+                            className={p.work ? "work" : "sub"}
                             {...pv(k)}
                           >
                             {p.text}
@@ -156,7 +167,7 @@ export default function SkyHome() {
 
         <aside className="sky-aside" aria-hidden="true" ref={asideRef}>
           <div
-            className={"sky-card" + (expandable ? " expandable" : "")}
+            className={"sky-card" + (expandable ? " expandable" : clickable ? " clickable" : "")}
             style={{ top, opacity: visible ? 1 : 0, pointerEvents: visible ? "auto" : "none" }}
             onClick={openCard}
           >
@@ -182,9 +193,9 @@ export default function SkyHome() {
                 </div>
               ))}
             </div>
-            {expandable && (
+            {clickable && (
               <span className="sky-hint">
-                {cur.live ? (loaded[active] ? "Live · click to use" : "Click to open") : "Click to open"}
+                {cur.live ? "Click to explore" : cur.url.startsWith("mailto:") ? "Click to email" : "Opens in new tab ↗"}
               </span>
             )}
           </div>
@@ -219,29 +230,15 @@ function BrowserWindow({ k, onClose }) {
           </button>
         </div>
         <div className="sky-view">
-          {p.live ? (
-            <>
-              <img src={p.img} alt="" style={{ opacity: ready ? 0 : 1 }} />
-              <iframe
-                src={p.live}
-                title={displayUrl(p.url)}
-                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-                allowFullScreen
-                onLoad={() => setReady(true)}
-                style={{ opacity: ready ? 1 : 0 }}
-              />
-            </>
-          ) : (
-            <>
-              <img src={p.img} alt={"Screenshot of " + displayUrl(p.url)} />
-              <div className="sky-blocked">
-                <p>{displayUrl(p.url).split("/")[0]} can’t be shown inside another page.</p>
-                <a href={p.url} target="_blank" rel="noopener noreferrer">
-                  Visit the site ↗
-                </a>
-              </div>
-            </>
-          )}
+          <img src={p.img} alt="" style={{ opacity: ready ? 0 : 1 }} />
+          <iframe
+            src={p.live}
+            title={displayUrl(p.url)}
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+            allowFullScreen
+            onLoad={() => setReady(true)}
+            style={{ opacity: ready ? 1 : 0 }}
+          />
         </div>
       </div>
     </div>
