@@ -150,7 +150,7 @@
 .sky-recent a.sub:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 
 /* preview card */
-.sky-aside { flex: 1 1 400px; align-self: stretch; position: relative; min-height: 1px; }
+.sky-aside { flex: 1 1 300px; align-self: stretch; position: relative; min-height: 1px; }
 .sky-card { position: absolute; left: -136px; width: calc(100% + 136px); transition: opacity 0.2s ease; }
 .sky-card.expandable { cursor: zoom-in; }
 .sky-card.clickable { cursor: pointer; }
@@ -283,6 +283,6 @@
 @keyframes sky-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes sky-rise { from { opacity: 0; transform: translateY(12px) scale(0.985); } to { opacity: 1; transform: none; } }
 
-@media (max-width: 980px) { .sky-aside { display: none; } }
+@media (max-width: 999px) { .sky-aside { display: none; } }
 @media (max-width: 640px) { .sky-wrap { padding: 72px 16px 360px; } }
 @media (prefers-reduced-motion: reduce) { .sky-overlay, .sky-window { animation: none; } }
