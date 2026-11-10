@@ -6,7 +6,6 @@
 //          Everything else (GitHub, X, arXiv…) is a screenshot, and clicking the
 //          card just opens the real site in a new tab.
 //  note  – a text card instead of a page
-//  definition – the dictionary-style card for "processes"
 export const PREVIEWS = {
   engelbart: { url: "https://mathetic.com/engelbart", img: "/previews/engelbart.jpg", live: "https://mathetic.com/engelbart" },
   mathetic: { url: "https://mathetic.com", img: "/previews/mathetic.jpg", live: "https://mathetic.com" },
@@ -24,7 +23,6 @@ export const PREVIEWS = {
   x: { url: "https://x.com/DavidBarron410", img: "/previews/x.jpg" },
   scholar: { note: { label: "Google Scholar", body: "Profile coming soon." } },
   email: { url: "mailto:dbarron410@vt.edu", note: { label: "Email", body: "dbarron410@vt.edu" } },
-  processes: { definition: true }, // drawn by ProcessDefinition.jsx
 };
 
 export const displayUrl = (u) =>
