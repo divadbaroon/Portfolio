@@ -32,6 +32,8 @@ export default function SkyHome() {
   const [active, setActive] = useState("engelbart"); // what the card shows once visible
   const [visible, setVisible] = useState(false); // hidden until the first hover; click-away hides it again
   const [open, setOpen] = useState(null); // key shown full size in the browser window
+  const [copied, setCopied] = useState(false);
+  const copyTimer = useRef(0);
   const [top, setTop] = useState(192);
 
   const asideRef = useRef(null);
@@ -79,6 +81,15 @@ export default function SkyHome() {
     setActive(k);
     setVisible(true);
   };
+  const copyEmail = (e) => {
+    if (!navigator.clipboard) return; // fall back to the mailto link
+    e.preventDefault();
+    navigator.clipboard.writeText("dbarron410@vt.edu").then(() => {
+      setCopied(true);
+      clearTimeout(copyTimer.current);
+      copyTimer.current = setTimeout(() => setCopied(false), 1800);
+    }, () => (window.location.href = "mailto:dbarron410@vt.edu"));
+  };
   const pv = (k) => ({ "data-pv": k, onMouseEnter: () => show(k), onFocus: () => show(k) });
 
   const cur = PREVIEWS[active];
@@ -104,12 +115,24 @@ export default function SkyHome() {
             <em>processes</em>{" "}
             behind learning and exceptional research.
           </p>
+          {/* Plain links: no preview card. Email copies the address instead of opening a mail app. */}
           <nav className="sky-links" aria-label="Elsewhere" ref={navRef}>
-            {LINKS.map((l) => (
-              <a key={l.k} href={l.href} {...newTab(l.href)} {...pv(l.k)}>
-                {l.label}
-              </a>
-            ))}
+            {LINKS.map((l) =>
+              l.k === "email" ? (
+                <span key={l.k} className="sky-email">
+                  <a href={l.href} onClick={copyEmail}>
+                    {l.label}
+                  </a>
+                  <span className={"sky-copied" + (copied ? " on" : "")} role="status" aria-live="polite">
+                    {copied ? "Copied dbarron410@vt.edu" : ""}
+                  </span>
+                </span>
+              ) : (
+                <a key={l.k} href={l.href} {...newTab(l.href)}>
+                  {l.label}
+                </a>
+              )
+            )}
           </nav>
 
           <section aria-labelledby="rw-h" className="sky-recent">

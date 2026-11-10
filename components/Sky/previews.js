@@ -18,11 +18,6 @@ export const PREVIEWS = {
     video: "youtube",
     live: "https://www.youtube-nocookie.com/embed/KBjp7t9403c?start=318&autoplay=1&rel=0",
   },
-  cv: { url: "/david_barron_resume.pdf", img: "/previews/cv.jpg", live: "/david_barron_resume.pdf" },
-  github: { url: "https://github.com/divadbaroon", img: "/previews/github.jpg" },
-  x: { url: "https://x.com/DavidBarron410", img: "/previews/x.jpg" },
-  scholar: { note: { label: "Google Scholar", body: "Profile coming soon." } },
-  email: { url: "mailto:dbarron410@vt.edu", note: { label: "Email", body: "dbarron410@vt.edu" } },
 };
 
 export const displayUrl = (u) =>
