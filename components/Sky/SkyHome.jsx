@@ -16,7 +16,7 @@ const LINKS = [
 // or grey context text. White = yours and interactive; grey = where it happened, not a link.
 const WORK = [
   { date: "Now", now: true, parts: [{ work: "engelbart", text: "Engelbart" }, { text: "Mathetic", muted: true }] },
-  { date: "Aug '26", parts: ["Cofounded", { sub: "mathetic", text: "Mathetic" }, "at", { sub: "surplus", text: "Surplus" }] },
+  { date: "Aug '26", parts: ["Cofounded", { work: "mathetic", text: "Mathetic" }, { sub: "surplus", text: "Surplus incubator", muted: true }] },
   { date: "Jul '26", parts: [{ work: "tutortrace", text: "TutorTrace" }, { text: "UIST '26", muted: true }] },
   { date: "Jul '26", parts: [{ work: "illusion", text: "The Illusion of Learning" }, { text: "FutureHCI '26", muted: true }] },
   { date: "Jan '26", parts: ["Started PhD in CS", { text: "Virginia Tech", muted: true }] },
@@ -150,7 +150,7 @@ export default function SkyHome() {
                           {sep}
                           <a
                             href={PREVIEWS[k].url}
-                            className={p.work ? "work" : "sub"}
+                            className={p.work ? "work" : p.muted ? "sub muted" : "sub"}
                             {...pv(k)}
                           >
                             {p.text}
