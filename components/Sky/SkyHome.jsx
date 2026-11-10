@@ -9,6 +9,7 @@ const LINKS = [
   // { k: "scholar", href: "TODO: profile URL", label: "Google Scholar" }, — add back once the profile exists
   { k: "github", href: "https://github.com/divadbaroon", label: "GitHub" },
   { k: "x", href: "https://x.com/DavidBarron410", label: "X" },
+  { k: "linkedin", href: "https://www.linkedin.com/in/david-barron-8248a11aa/", label: "LinkedIn" },
   { k: "email", href: "mailto:dbarron410@vt.edu", label: "Email" },
 ];
 
