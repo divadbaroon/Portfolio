@@ -108,6 +108,7 @@ export default function SkyHome() {
     <div className="sky-root">
       <div aria-hidden="true" className="sky-glow" />
       <div aria-hidden="true" className="sky-stars">
+        <span className="band" />
         {STARS.map((t, i) => (
           <span
             key={i}
@@ -118,7 +119,8 @@ export default function SkyHome() {
               width: t.s,
               height: t.s,
               opacity: t.o,
-              boxShadow: `0 0 ${t.s * 2}px rgba(255,255,255,.6)`,
+              backgroundColor: t.c,
+              boxShadow: t.g ? `0 0 ${Math.round(t.s * 2.5)}px rgba(220,230,255,.45)` : undefined,
               animationDelay: t.tw ? `-${t.d}s` : undefined,
             }}
           />
