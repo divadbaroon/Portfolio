@@ -141,7 +141,7 @@ export default function SkyHome() {
           <p className="sky-intro">
             I build systems that understand and reward the{" "}
             <em>behavioral processes</em>{" "}
-            behind how people learn and do exceptional research.
+            behind learning and exceptional research.
           </p>
           {/* Plain links: no preview card. Email copies the address instead of opening a mail app. */}
           <nav className="sky-links" aria-label="Elsewhere" ref={navRef}>
