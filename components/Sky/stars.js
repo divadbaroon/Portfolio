@@ -1,11 +1,9 @@
-// 260 stars: mostly tiny and faint, slightly tinted, thinning toward the horizon and kept clear
+// 258 stars: mostly tiny and faint, slightly tinted, thinning toward the horizon and kept clear
 // of the text block; g = one of the few bright ones with a halo, tw = twinkles (d = delay in s).
 // Generated with seed 11 (canvas option D, without the diagonal band).
 export const STARS = [
   {"x":92.4,"y":10.0,"s":1.7,"o":0.84,"c":"#e6eeff","g":1},
-  {"x":63.0,"y":25.2,"s":2.1,"o":0.79,"c":"#e6eeff","g":1,"tw":1,"d":7.3},
   {"x":69.3,"y":0.7,"s":1.7,"o":0.87,"c":"#e6eeff","g":1},
-  {"x":62.3,"y":28.5,"s":1.9,"o":0.81,"c":"#e6eeff","g":1},
   {"x":77.8,"y":6.3,"s":1.8,"o":0.8,"c":"#fff3e2","g":1},
   {"x":93.2,"y":1.4,"s":1,"o":0.21,"c":"#ffffff"},
   {"x":56.3,"y":1.8,"s":0.7,"o":0.37,"c":"#e6eeff","tw":1,"d":0.2},
