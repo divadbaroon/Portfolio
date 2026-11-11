@@ -79,7 +79,17 @@ export default function SkyHome() {
     };
   }, [open]);
 
+  // The card shows while a timeline link (or the card itself) is hovered, and fades out shortly after
+  // the pointer leaves. The short grace period lets you move from the link across to the card to click it.
+  const hideTimer = useRef(0);
+  const keep = () => clearTimeout(hideTimer.current);
+  const hideSoon = () => {
+    clearTimeout(hideTimer.current);
+    hideTimer.current = setTimeout(() => setVisible(false), 350);
+  };
+  useEffect(() => () => clearTimeout(hideTimer.current), []);
   const show = (k) => {
+    keep();
     setActive(k);
     setVisible(true);
   };
@@ -92,7 +102,13 @@ export default function SkyHome() {
       copyTimer.current = setTimeout(() => setCopied(false), 1800);
     }, () => (window.location.href = "mailto:dbarron410@vt.edu"));
   };
-  const pv = (k) => ({ "data-pv": k, onMouseEnter: () => show(k), onFocus: () => show(k) });
+  const pv = (k) => ({
+    "data-pv": k,
+    onMouseEnter: () => show(k),
+    onMouseLeave: hideSoon,
+    onFocus: () => show(k),
+    onBlur: hideSoon,
+  });
 
   const cur = PREVIEWS[active];
   const expandable = !!cur.live;
@@ -198,6 +214,8 @@ export default function SkyHome() {
           <div
             className={"sky-card" + (expandable ? " expandable" : clickable ? " clickable" : "")}
             style={{ top, opacity: visible ? 1 : 0, pointerEvents: visible ? "auto" : "none" }}
+            onMouseEnter={keep}
+            onMouseLeave={hideSoon}
             onClick={openCard}
           >
             <div className="sky-frame">
