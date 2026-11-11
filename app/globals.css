@@ -112,13 +112,6 @@
 
 .sky-stars { position: absolute; inset: 0; pointer-events: none; }
 .sky-stars span { position: absolute; border-radius: 50%; background-color: #ffffff; }
-.sky-stars .band {
-  position: absolute;
-  inset: 0;
-  border-radius: 0;
-  background-color: transparent;
-  background-image: linear-gradient(118deg, rgba(0, 0, 0, 0) 52%, rgba(170, 190, 240, 0.045) 66%, rgba(0, 0, 0, 0) 80%);
-}
 .sky-stars .tw { animation: sky-twinkle 9s ease-in-out infinite; }
 @keyframes sky-twinkle { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(0.5); } }
 @media (prefers-reduced-motion: reduce) { .sky-stars .tw { animation: none; } }

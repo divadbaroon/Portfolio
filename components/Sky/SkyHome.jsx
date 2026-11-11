@@ -108,7 +108,6 @@ export default function SkyHome() {
     <div className="sky-root">
       <div aria-hidden="true" className="sky-glow" />
       <div aria-hidden="true" className="sky-stars">
-        <span className="band" />
         {STARS.map((t, i) => (
           <span
             key={i}
