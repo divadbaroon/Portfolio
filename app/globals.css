@@ -100,7 +100,7 @@
 .sky-clouds {
   position: absolute;
   left: 0;
-  top: calc(18% + 96px);
+  top: calc(18% + 112px);
   width: 100%;
   height: calc(82% + 54px);
   display: block;
