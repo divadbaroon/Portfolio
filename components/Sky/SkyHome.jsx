@@ -85,7 +85,7 @@ export default function SkyHome() {
   const keep = () => clearTimeout(hideTimer.current);
   const hideSoon = () => {
     clearTimeout(hideTimer.current);
-    hideTimer.current = setTimeout(() => setVisible(false), 350);
+    hideTimer.current = setTimeout(() => setVisible(false), 150);
   };
   useEffect(() => () => clearTimeout(hideTimer.current), []);
   const show = (k) => {
