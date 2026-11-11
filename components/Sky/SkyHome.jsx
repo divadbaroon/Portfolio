@@ -79,19 +79,20 @@ export default function SkyHome() {
     };
   }, [open]);
 
-  // The card shows while a timeline link (or the card itself) is hovered, and fades out shortly after
-  // the pointer leaves. The short grace period lets you move from the link across to the card to click it.
-  const hideTimer = useRef(0);
-  const keep = () => clearTimeout(hideTimer.current);
-  const hideSoon = () => {
-    clearTimeout(hideTimer.current);
-    hideTimer.current = setTimeout(() => setVisible(false), 150);
-  };
-  useEffect(() => () => clearTimeout(hideTimer.current), []);
+  // The card is a look-only preview: it shows while a timeline link is hovered and fades out when the
+  // pointer leaves. Clicking the link itself opens the item.
   const show = (k) => {
-    keep();
     setActive(k);
     setVisible(true);
+  };
+  const hide = () => setVisible(false);
+  // Embeddable items (our pages, the paper PDF, the talk) open in the in-page browser window;
+  // modifier-clicks still open a real new tab, and everything else follows its link normally.
+  const openLink = (k) => (e) => {
+    if (!PREVIEWS[k].live || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    setVisible(false);
+    setOpen(k);
   };
   const copyEmail = (e) => {
     if (!navigator.clipboard) return; // fall back to the mailto link
@@ -105,20 +106,11 @@ export default function SkyHome() {
   const pv = (k) => ({
     "data-pv": k,
     onMouseEnter: () => show(k),
-    onMouseLeave: hideSoon,
+    onMouseLeave: hide,
     onFocus: () => show(k),
-    onBlur: hideSoon,
+    onBlur: hide,
+    onClick: openLink(k),
   });
-
-  const cur = PREVIEWS[active];
-  const expandable = !!cur.live;
-  const clickable = !!(cur.live || cur.url);
-  // Pages that allow embedding open full size in the browser window; everything else opens the real site.
-  const openCard = () => {
-    if (cur.live) setOpen(active);
-    else if (cur.url && cur.url.startsWith("mailto:")) window.location.href = cur.url;
-    else if (cur.url) window.open(cur.url, "_blank", "noopener,noreferrer");
-  };
 
   return (
     <div className="sky-root">
@@ -148,7 +140,7 @@ export default function SkyHome() {
           <h1 className="sky-name">David Barron</h1>
           <p className="sky-intro">
             I build systems that understand and reward the{" "}
-            <em>processes</em>{" "}
+            <em>behavioral processes</em>{" "}
             behind learning and exceptional research.
           </p>
           {/* Plain links: no preview card. Email copies the address instead of opening a mail app. */}
@@ -211,13 +203,7 @@ export default function SkyHome() {
         </main>
 
         <aside className="sky-aside" aria-hidden="true" ref={asideRef}>
-          <div
-            className={"sky-card" + (expandable ? " expandable" : clickable ? " clickable" : "")}
-            style={{ top, opacity: visible ? 1 : 0, pointerEvents: visible ? "auto" : "none" }}
-            onMouseEnter={keep}
-            onMouseLeave={hideSoon}
-            onClick={openCard}
-          >
+          <div className="sky-card" style={{ top, opacity: visible ? 1 : 0, pointerEvents: "none" }}>
             <div className="sky-frame">
               {KEYS.filter((k) => PREVIEWS[k].img).map((k) => (
                 <img
@@ -250,11 +236,6 @@ export default function SkyHome() {
                 </div>
               ))}
             </div>
-            {clickable && (
-              <span className="sky-hint">
-                {(cur.live || "").endsWith(".pdf") ? "Click to read" : cur.video ? "Click to play" : cur.live ? "Click to explore" : cur.url.startsWith("mailto:") ? "Click to email" : "Opens in new tab ↗"}
-              </span>
-            )}
           </div>
         </aside>
       </div>
