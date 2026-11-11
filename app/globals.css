@@ -88,14 +88,14 @@
   overflow: hidden;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #ffffff;
-  /* dawn: deep blue overhead, lavender, then a warm peach horizon */
-  background-color: #fddcc4;
-  background-image: linear-gradient(180deg, #22346e 0%, #536bb0 34%, #9496cb 60%, #ecbcb6 82%, #fddcc4 100%);
+  /* pre-dawn: near-black navy overhead easing to a dim slate-blue horizon */
+  background-color: #3c5277;
+  background-image: linear-gradient(180deg, #070c1f 0%, #0f1b3b 42%, #1f3359 72%, #3c5277 100%);
 }
 .sky-glow {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(160% 30% at 50% 80%, rgba(255, 236, 226, 0.28) 0%, rgba(0, 0, 0, 0) 70%);
+  background-image: radial-gradient(160% 30% at 50% 82%, rgba(120, 150, 210, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
 }
 .sky-clouds {
   position: absolute;
@@ -105,6 +105,7 @@
   height: calc(82% + 54px);
   display: block;
   pointer-events: none;
+  opacity: 0.75;
 }
 .sky-root a { color: #ffffff; cursor: pointer; }
 .sky-root a:hover { color: #dbeafe; }
