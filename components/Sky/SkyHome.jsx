@@ -203,7 +203,16 @@ export default function SkyHome() {
         </main>
 
         <aside className="sky-aside" aria-hidden="true" ref={asideRef}>
-          <div className="sky-card" style={{ top, opacity: visible ? 1 : 0, pointerEvents: "none" }}>
+          <div
+            className="sky-card"
+            // quick fade in, slower fade out so it doesn't blink away
+            style={{
+              top,
+              opacity: visible ? 1 : 0,
+              pointerEvents: "none",
+              transition: visible ? "opacity 0.18s ease-out" : "opacity 0.5s ease-in-out",
+            }}
+          >
             <div className="sky-frame">
               {KEYS.filter((k) => PREVIEWS[k].img).map((k) => (
                 <img
