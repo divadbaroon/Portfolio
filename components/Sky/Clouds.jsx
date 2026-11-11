@@ -131,6 +131,16 @@ export default function Clouds({ speed = 1 }) {
       b.fillStyle = fade(b, h, sharpMask);
       b.fillRect(0, 0, w, h);
       ctx.drawImage(buf, 0, 0, w, h);
+      // tint the clouds to the dawn light: pink up top, warm peach toward the horizon
+      ctx.globalCompositeOperation = "source-atop";
+      const tg = ctx.createLinearGradient(0, 0, 0, h);
+      tg.addColorStop(0, "rgb(255,220,226)");
+      tg.addColorStop(1, "rgb(255,210,178)");
+      ctx.globalAlpha = 0.34;
+      ctx.fillStyle = tg;
+      ctx.fillRect(0, 0, w, h);
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = "source-over";
     };
     tick();
     return () => cancelAnimationFrame(raf);

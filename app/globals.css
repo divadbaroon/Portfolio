@@ -88,21 +88,19 @@
   overflow: hidden;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #ffffff;
-  background-color: #a8d4f4;
-  background-image:
-    radial-gradient(280% 50% at 50% -8%, #062460 0%, #0a3480 28%, rgba(0, 0, 0, 0) 68%),
-    radial-gradient(250% 65% at 50% 6%, #0c4298 0%, #1866c2 26%, #308ae0 48%, rgba(0, 0, 0, 0) 76%),
-    radial-gradient(220% 75% at 50% 32%, #4a9ee6 0%, #6cb4ec 28%, #90c8f0 52%, rgba(0, 0, 0, 0) 78%);
+  /* dawn: deep blue overhead, lavender, then a warm peach horizon */
+  background-color: #fddcc4;
+  background-image: linear-gradient(180deg, #22346e 0%, #536bb0 34%, #9496cb 60%, #ecbcb6 82%, #fddcc4 100%);
 }
 .sky-glow {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(180% 30% at 50% 42%, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.12) 30%, rgba(255, 255, 255, 0.04) 58%, rgba(0, 0, 0, 0) 78%);
+  background-image: radial-gradient(160% 30% at 50% 80%, rgba(255, 236, 226, 0.28) 0%, rgba(0, 0, 0, 0) 70%);
 }
 .sky-clouds {
   position: absolute;
   left: 0;
-  top: calc(18% + 36px);
+  top: calc(18% + 96px);
   width: 100%;
   height: calc(82% + 54px);
   display: block;
@@ -110,6 +108,12 @@
 }
 .sky-root a { color: #ffffff; cursor: pointer; }
 .sky-root a:hover { color: #dbeafe; }
+
+.sky-stars { position: absolute; inset: 0; pointer-events: none; }
+.sky-stars span { position: absolute; border-radius: 50%; background-color: #ffffff; }
+.sky-stars .tw { animation: sky-twinkle 6s ease-in-out infinite; }
+@keyframes sky-twinkle { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.6); filter: brightness(0.7); } }
+@media (prefers-reduced-motion: reduce) { .sky-stars .tw { animation: none; } }
 
 .sky-wrap {
   position: relative;

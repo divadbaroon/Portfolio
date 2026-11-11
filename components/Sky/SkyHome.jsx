@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Clouds from "./Clouds";
+import { STARS } from "./stars";
 import { PREVIEWS, displayUrl } from "./previews";
 
 const LINKS = [
@@ -106,6 +107,23 @@ export default function SkyHome() {
   return (
     <div className="sky-root">
       <div aria-hidden="true" className="sky-glow" />
+      <div aria-hidden="true" className="sky-stars">
+        {STARS.map((t, i) => (
+          <span
+            key={i}
+            className={t.tw ? "tw" : undefined}
+            style={{
+              left: t.x + "%",
+              top: t.y + "%",
+              width: t.s,
+              height: t.s,
+              opacity: t.o,
+              boxShadow: `0 0 ${t.s * 2}px rgba(255,255,255,.6)`,
+              animationDelay: t.tw ? `-${t.d}s` : undefined,
+            }}
+          />
+        ))}
+      </div>
       <Clouds />
 
       <div className="sky-wrap">
