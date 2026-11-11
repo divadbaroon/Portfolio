@@ -1,9 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="14" fill="#6474c9"/>
-  <g fill="#ffffff">
-    <circle cx="23" cy="37" r="9"/>
-    <circle cx="33.5" cy="29" r="12.5"/>
-    <circle cx="44" cy="36" r="9.5"/>
-    <rect x="14" y="35" width="40" height="11" rx="5.5"/>
-  </g>
+  <path fill="#ffffff" fill-rule="evenodd" d="M17 13H29.5A19 19 0 0 1 29.5 51H17Z M24.5 20.5H29.5A11.5 11.5 0 0 1 29.5 43.5H24.5Z"/>
 </svg>
