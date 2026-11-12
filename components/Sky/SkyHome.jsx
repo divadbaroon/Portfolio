@@ -245,14 +245,6 @@ export default function SkyHome() {
                 </div>
               ))}
             </div>
-            {/* one-line description under the image; all stacked in one grid cell so they crossfade like the images */}
-            <div className="sky-desc">
-              {KEYS.filter((k) => PREVIEWS[k].desc).map((k) => (
-                <p key={k} style={{ opacity: k === active ? 1 : 0 }}>
-                  {PREVIEWS[k].desc}
-                </p>
-              ))}
-            </div>
           </div>
         </aside>
       </div>

@@ -167,8 +167,6 @@
 /* preview card */
 .sky-aside { flex: 1 1 300px; align-self: stretch; position: relative; min-height: 1px; }
 .sky-card { position: absolute; left: -136px; width: calc(100% + 136px); transition: opacity 0.2s ease; }
-.sky-desc { display: grid; margin-top: 10px; padding: 0 2px; }
-.sky-desc p { grid-area: 1 / 1; margin: 0; font-size: 14px; line-height: 20px; color: rgba(255, 255, 255, 0.66); transition: opacity 0.2s ease; }
 .sky-card.expandable { cursor: zoom-in; }
 .sky-card.clickable { cursor: pointer; }
 .sky-frame {
