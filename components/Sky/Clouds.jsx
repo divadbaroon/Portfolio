@@ -54,19 +54,23 @@ function fade(ctx, h, stops) {
 }
 
 function drawLayer(ctx, field, w, h, t, speed, img) {
+  // Puffs are sized for a ~1280px-wide screen. On phones they'd each be wider than the screen and
+  // smear into flat fog (and look frozen), so scale them down with the viewport.
+  const k = Math.max(0.42, Math.min(1, w / 1280));
   for (const p of field) {
+    const pw = p.w * k;
     const frac = (((p.phase + (t * speed) / p.dur) % 1) + 1) % 1;
-    const x = -p.w + frac * (w + p.w);
+    const x = -pw + frac * (w + pw);
     const y = p.top * h;
     ctx.globalAlpha = Math.min(1, p.a);
     ctx.globalCompositeOperation = p.screen ? "screen" : "source-over";
     if (p.flip) {
       ctx.save();
-      ctx.translate(x + p.w, y);
+      ctx.translate(x + pw, y);
       ctx.scale(-1, 1);
-      ctx.drawImage(img, 0, 0, p.w, p.w);
+      ctx.drawImage(img, 0, 0, pw, pw);
       ctx.restore();
-    } else ctx.drawImage(img, x, y, p.w, p.w);
+    } else ctx.drawImage(img, x, y, pw, pw);
   }
   ctx.globalAlpha = 1;
 }
