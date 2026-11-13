@@ -179,6 +179,8 @@ function wire() {
 }
 
 // ---------- inference ----------
+// Not a log readout: guess what the visitor is after (testing it, evaluating me, curious about one piece
+// of work, back for more) and answer with something useful. At most two short lines.
 
 const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
 export function dur(ms) {
@@ -190,132 +192,95 @@ export function dur(ms) {
   if (h < 48) return plural(h, "hour");
   return plural(Math.round(h / 24), "day");
 }
-const ORD = ["", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
-const ord = (n) => ORD[n] || `${n}th`;
-const list = (xs) => (xs.length <= 1 ? xs.join("") : xs.slice(0, -1).join(", ") + " and " + xs[xs.length - 1]);
-const name = (k) => NAMES[k] || k;
-const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+// What to offer once we think we know what someone is interested in.
+const POINTERS = {
+  engelbart: { t: "You seem most interested in Engelbart.", link: { label: "Early access is open", href: "https://mathetic.com/engelbart" } },
+  mathetic: { t: "You seem most interested in Mathetic.", link: { label: "Say hi if that's your world", href: "mailto:dbarron410@vt.edu" } },
+  tutortrace: { t: "You seem most interested in TutorTrace.", link: { label: "The paper and dataset are public", href: "https://arxiv.org/abs/2608.26184" } },
+  illusion: { t: "You seem most interested in the talk.", link: { label: "Watch it from the key part", href: "https://www.youtube.com/watch?v=KBjp7t9403c&t=318s" } },
+};
 
 function dwellByKey(events) {
   const m = {};
-  for (const e of events) if (e.type === "hover") m[e.k] = (m[e.k] || 0) + e.d;
+  for (const e of events) {
+    if (e.type === "hover") m[e.k] = (m[e.k] || 0) + e.d;
+    if (e.type === "close") m[e.k] = (m[e.k] || 0) + e.d; // time spent inside counts more than a hover
+  }
   return m;
 }
-function top(m) {
+function favourite(events) {
+  const m = dwellByKey(events);
   let best = null;
-  for (const k in m) if (!best || m[k] > m[best]) best = k;
-  return best;
+  for (const k in m) if (POINTERS[k] && (!best || m[k] > m[best])) best = k;
+  return best && m[best] >= 3000 ? best : null;
 }
 
-// Returns up to three sentences, most telling first.
+// Returns [{ t, link? }], most relevant first, max two.
 export function infer() {
   if (!S) return [];
   const t = now();
   const all = S.events;
   const E = all.filter((e) => e.s === S.session);
   const visit = S.visits[S.session];
-  const prevVisits = S.visits.slice(0, -1);
   const away = S.prevLastSeen ? visit.start - S.prevLastSeen : null;
-  const here = t - S.sessionStart;
   const opens = E.filter((e) => e.type === "proc");
-  const nOpen = opens.length;
-  const prevOpen = nOpen >= 2 ? opens[nOpen - 2] : null;
-  const C = []; // candidates: [priority, sentence]
-  const add = (p, s) => s && C.push([p, s]);
-
-  if (S.cleared && E.length <= 1) return ["Cleared. As far as this page knows, you just arrived."];
-
-  // --- arrivals ---------------------------------------------------------
-  if (visit.nav === "reload" && away != null && away < 30 * 60 * 1000) {
-    const prevProc = all.filter((e) => e.s === S.session - 1 && e.type === "proc").pop();
-    add(nOpen <= 1 ? 96 : 60,
-      prevProc
-        ? `You reloaded the page ${dur(visit.start - prevProc.t)} after last looking at this — probably to see if I'd remember. I do (only in your browser).`
-        : `You reloaded the page. Checking whether anything changes on a fresh load?`);
-  } else if (prevVisits.length && away != null) {
-    const prevE = all.filter((e) => e.s === S.session - 1);
-    const fav = top(dwellByKey(prevE));
-    if (away >= 30 * 60 * 1000) {
-      add(92, `Welcome back — it's been ${dur(away)} since you were last here (visit ${prevVisits.length + 1}).`);
-      if (fav) add(70, `Last time you spent the longest on ${name(fav)}.`);
-    } else if (visit.nav === "back_forward") {
-      add(84, `You came back with the back button ${dur(away)} after leaving.`);
-    } else {
-      add(84, `You left and came back ${dur(away)} later.`);
-    }
-  }
-  if (visit.ref && nOpen <= 1) add(40, `You arrived from ${visit.ref}.`);
-
-  // --- the card itself --------------------------------------------------
-  if (nOpen === 1 && visit.nav !== "reload" && E.indexOf(opens[0]) === E.findIndex((e) => e.type !== "select" && e.type !== "copytext") && opens[0].t - S.sessionStart < 12000)
-    add(88, `You opened this ${dur(opens[0].t - S.sessionStart)} after arriving, before anything else — you came for the idea.`);
-  if (prevOpen) {
-    const since = E.filter((e) => e.t > prevOpen.t && e.type !== "proc");
-    const looked = Object.entries(dwellByKey(since)).sort((a, b) => b[1] - a[1]);
-    const did = [];
-    if (looked.length) did.push("looked at " + list(looked.slice(0, 3).map(([k, d]) => `${name(k)} (${dur(d).replace(/ seconds?/, "s")})`)));
-    const opened = since.filter((e) => e.type === "open").map((e) => name(e.k));
-    if (opened.length) did.push("opened " + list([...new Set(opened)]));
-    const clicked = since.filter((e) => e.type === "click").map((e) => name(e.k));
-    if (clicked.length) did.push("went to " + list([...new Set(clicked)]));
-    if (since.some((e) => e.type === "email")) did.push("copied my email");
-    const gap = dur(t - prevOpen.t);
-    if (nOpen === 2)
-      add(100, did.length
-        ? `You came back to this ${gap} later — probably to see if it changed. It did: since then you ${list(did)}.`
-        : `You came back ${gap} later to see if it changed. Nothing new yet — try looking around, then come back.`);
-    else
-      add(99, `That's the ${ord(nOpen)} time you've opened this. You're testing whether it's real — fair.${did.length ? ` Since last time you ${list(did)}.` : ""}`);
-  }
-
-  // --- the timeline ------------------------------------------------------
-  const hovers = E.filter((e) => e.type === "hover");
-  const dwell = dwellByKey(hovers);
-  const seen = TIMELINE.filter((k) => dwell[k]);
-  const totalDwell = seen.reduce((a, k) => a + dwell[k], 0);
-  if (seen.length === TIMELINE.length && totalDwell < 7000) add(74, `You skimmed every item on the timeline in ${dur(totalDwell)} — scanning, not reading.`);
-  else if (seen.length === TIMELINE.length) add(66, "You've looked at everything on the timeline at least once. Thorough.");
-  const fav = top(dwell);
-  if (fav && dwell[fav] >= 4000) add(68, `You lingered on ${name(fav)} (${dur(dwell[fav])}) longer than anything else.`);
-  const revisit = Object.keys(dwell).find((k) => hovers.filter((e) => e.k === k).length >= 3);
-  if (revisit) add(62, `You keep going back to ${name(revisit)}.`);
-
-  // --- opening things ------------------------------------------------------
-  const closes = E.filter((e) => e.type === "close");
-  const quick = closes.find((e) => e.d < 2500);
-  if (quick) add(76, `You opened ${name(quick.k)} and closed it within ${dur(quick.d)} — not what you expected?`);
-  const longest = closes.reduce((a, e) => (!a || e.d > a.d ? e : a), null);
-  if (longest && longest.d >= 8000) add(72, `You spent ${dur(longest.d)} inside ${name(longest.k)}.`);
-
-  // --- leaving and coming back --------------------------------------------
-  const aways = E.filter((e) => e.type === "away");
-  const viaLink = [...aways].reverse().find((e) => e.k);
-  if (viaLink) add(82, `You went to ${SITE[viaLink.k] || name(viaLink.k)} for ${dur(viaLink.d)}, then came back.`);
-  else if (aways.length) {
-    const last = aways[aways.length - 1];
-    add(58, `You switched to another tab for ${dur(last.d)}, then came back here.`);
-  }
-  const clicks = E.filter((e) => e.type === "click");
-  if (clicks.length && clicks[0].k === "cv") add(64, "You went for my CV first — evaluating, it seems.");
-
-  // --- small signals --------------------------------------------------------
-  if (E.some((e) => e.type === "email")) add(90, "You copied my email. Say hi.");
-  const sel = [...E].reverse().find((e) => e.type === "select");
-  if (sel) add(75, `You highlighted “${sel.text}”.`);
-  const idle = E.filter((e) => e.type === "idle").pop();
-  if (idle) add(55, `You went still for ${dur(idle.d)} — reading, or thinking.`);
-  if (visit.touch && nOpen <= 1) add(30, "You tapped instead of hovering — you're on a phone.");
-  if (visit.hour >= 0 && visit.hour < 5) add(36, "Up late.");
-  if (prevVisits.length >= 3 && away != null && away >= 30 * 60 * 1000) add(50, `This is visit ${prevVisits.length + 1}. You keep coming back.`);
-
-  // --- fallback --------------------------------------------------------------
-  if (!C.length) {
-    if (!hovers.length) add(10, `You've been here ${dur(here)}. You read the intro and came straight here.`);
-    else add(10, `You've been here ${dur(here)} and looked at ${list(seen.map(name))}.`);
-  }
-
-  C.sort((a, b) => b[0] - a[0]);
   const out = [];
-  for (const [, s] of C) if (!out.includes(s) && out.length < 3) out.push(s);
-  return out.map(cap);
+  const say = (x) => x && out.length < 2 && !out.some((o) => o.t === x.t) && out.push(x);
+
+  if (S.cleared && E.length <= 1) return [{ t: "Cleared. As far as this page knows, you just arrived." }];
+
+  // 1) Testing it: flipping it open repeatedly, or reopening it right after doing one or two things.
+  //    Judged at the moment of each open (so the line doesn't change while it's showing), said once.
+  const isTest = (i) => {
+    const o = opens[i];
+    const burst = opens.filter((e) => e.t <= o.t && o.t - e.t < 10000).length >= 3;
+    const p = opens[i - 1];
+    const n = p ? E.filter((e) => e.t > p.t && e.t < o.t && e.type !== "proc" && e.type !== "idle").length : 0;
+    return burst || (p && o.t - p.t < 20000 && n >= 1 && n <= 3);
+  };
+  const last = opens.length - 1;
+  if (last >= 1 && isTest(last)) {
+    const first = opens.findIndex((_, i) => i >= 1 && isTest(i));
+    if (first === last) say({ t: "Checking whether this reacts to what you do? It does. It's reading how you use the page, not just counting clicks." });
+    else if (opens.filter((e) => opens[last].t - e.t < 10000).length >= 3) say({ t: "Still testing it. Try looking around the timeline for a bit, then come back." });
+  }
+
+  // 2) Reloaded to see if it forgets.
+  const prevProc = all.filter((e) => e.s === S.session - 1 && e.type === "proc").pop();
+  if (visit.nav === "reload" && prevProc && visit.start - prevProc.t < 10 * 60 * 1000 && opens.length <= 1)
+    say({ t: "Reloaded to see if this would forget you? It doesn't. It lives in your browser, nowhere else." });
+
+  // 3) Back after a while: pick up where they left off.
+  if (visit.nav !== "reload" && away != null && away >= 30 * 60 * 1000 && opens.length <= 1) {
+    const last = favourite(all.filter((e) => e.s === S.session - 1));
+    say({ t: `Welcome back${last ? `. Last time you were most interested in ${POINTERS[last].t.replace("You seem most interested in ", "").replace(/\.$/, "")}` : ""}.`,
+      link: last ? POINTERS[last].link : null });
+  }
+
+  // 4) What they care about this visit.
+  const fav = favourite(E);
+  if (fav) say(POINTERS[fav]);
+
+  // 5) Evaluating me rather than the work.
+  const clicks = E.filter((e) => e.type === "click");
+  if (clicks.some((e) => e.k === "cv" || e.k === "linkedin"))
+    say({ t: "Looks like you're sizing me up. The timeline is the short version; the CV has the rest.", link: { label: "Open the CV", href: "/david_barron_resume.pdf" } });
+
+  // 6) Scanning.
+  const hov = E.filter((e) => e.type === "hover");
+  const seen = new Set(hov.map((e) => e.k));
+  const quick = hov.reduce((a, e) => a + e.d, 0);
+  if (seen.size >= 3 && quick < 6000 && !fav)
+    say({ t: "You're scanning. If you only open one thing, make it TutorTrace; it's the clearest picture of the work.", link: { label: "TutorTrace", href: "https://arxiv.org/abs/2608.26184" } });
+
+  // 7) Came straight for the idea.
+  if (opens.length && opens.length <= 2 && opens[0].t - S.sessionStart < 12000 && !E.some((e) => e.t < opens[0].t && e.type === "hover"))
+    say({ t: "You came for the idea first. The talk is the best ten-minute version of it.", link: { label: "Watch it", href: "https://www.youtube.com/watch?v=KBjp7t9403c&t=318s" } });
+
+  // 8) Small, warm acknowledgements.
+  if (E.some((e) => e.type === "email")) say({ t: "You copied my email. I'll look out for it." });
+
+  if (!out.length) say({ t: "Not much to go on yet. Look around, then check back; this updates as you do." });
+  return out;
 }
