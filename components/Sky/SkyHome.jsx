@@ -140,7 +140,7 @@ export default function SkyHome() {
           <h1 className="sky-name">David Barron</h1>
           <p className="sky-intro">
             I build systems that understand and reward the{" "}
-            <em>behavioral processes</em>{" "}
+            <em className="sky-term">behavioral processes</em>{" "}
             behind learning and exceptional research.
           </p>
           {/* Plain links: no preview card. Email copies the address instead of opening a mail app. */}

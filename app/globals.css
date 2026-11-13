@@ -133,6 +133,8 @@
 .sky-links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; line-height: 22px; }
 .sky-links a { text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 .sky-links a:hover { border-bottom-color: #ffffff; }
+/* underlined like the timeline links, but not interactive yet */
+.sky-term { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; text-decoration-color: rgba(255, 255, 255, 0.7); }
 .sky-email { position: relative; }
 .sky-copied {
   position: absolute;
