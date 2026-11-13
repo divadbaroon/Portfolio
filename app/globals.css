@@ -134,7 +134,20 @@
 .sky-links a { text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 .sky-links a:hover { border-bottom-color: #ffffff; }
 /* underlined like the timeline links, but not interactive yet */
-.sky-term { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; text-decoration-color: rgba(255, 255, 255, 0.7); }
+.sky-term { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; text-decoration-color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: text-decoration-color 0.15s ease; }
+.sky-term:hover, .sky-term.on { text-decoration-color: #ffffff; }
+.sky-term:focus-visible { outline: 1px dashed rgba(255, 255, 255, 0.6); outline-offset: 3px; }
+/* the "what I've noticed" card (same slot as the preview card) */
+.sky-proc { padding: 18px 20px 14px; border-radius: 14px; background: rgba(12, 20, 46, 0.72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 18px 44px rgba(4, 10, 30, 0.35); }
+.sky-proc .label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55); margin-bottom: 10px; }
+.sky-proc .lines p { margin: 0 0 8px; font-size: 15px; line-height: 22px; color: #ffffff; }
+.sky-proc .foot { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 12px; line-height: 17px; color: rgba(255, 255, 255, 0.5); }
+.sky-proc .foot button { flex: none; padding: 0; border: 0; background: none; color: rgba(255, 255, 255, 0.75); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.sky-proc .foot button:hover { color: #ffffff; }
+.sky-proc-inline { display: none; }
+@media (max-width: 999px) {
+  .sky-proc-inline.on { display: block; margin-top: 18px; }
+}
 .sky-email { position: relative; }
 .sky-copied {
   position: absolute;
