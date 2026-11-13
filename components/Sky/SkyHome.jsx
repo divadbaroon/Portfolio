@@ -48,19 +48,6 @@ export default function SkyHome() {
   const procOn = procHover || procPinned;
   const [lines, setLines] = useState([]);
   const openedAt = useRef(0);
-  const termRef = useRef(null);
-  const [popPos, setPopPos] = useState({ left: -14, width: 380 });
-  // keep the dropdown on screen (phones): clamp it to a 16px gutter, caret still points at the word
-  useLayoutEffect(() => {
-    if (!procOn || !termRef.current) return;
-    const r = termRef.current.getBoundingClientRect();
-    const vw = document.documentElement.clientWidth;
-    const width = Math.min(380, vw - 32);
-    let left = -14;
-    if (r.left + left < 16) left = 16 - r.left;
-    if (r.left + left + width > vw - 16) left = vw - 16 - width - r.left;
-    setPopPos({ left, width });
-  }, [procOn]);
   useEffect(() => {
     initTrace();
   }, []);
@@ -166,41 +153,28 @@ export default function SkyHome() {
       openLink(k)(e);
     },
   });
-  // hover anywhere on the word or its dropdown keeps it open; click pins it
-  const procWrap = {
+  const proc = {
     "data-proc": true,
+    role: "button",
+    tabIndex: 0,
+    "aria-expanded": procOn,
     onMouseEnter: () => {
       setVisible(false);
       setProcHover(true);
     },
     onMouseLeave: () => setProcHover(false),
-  };
-  const procTrigger = {
-    role: "button",
-    tabIndex: 0,
-    "aria-expanded": procOn,
     onClick: () => setProcPinned((v) => !v),
     onKeyDown: (e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), setProcPinned((v) => !v)),
   };
   const procCard = (
     <>
-      <span className="label">What I&apos;ve noticed</span>
-      <span className="lines" aria-live="polite">
+      <div className="label">What I&apos;ve noticed</div>
+      <div className="lines" aria-live="polite">
         {lines.map((l, i) => (
-          <span className="line" key={i}>
-            {l.t}
-            {l.link && (
-              <>
-                {" "}
-                <a href={l.link.href} {...newTab(l.link.href)}>
-                  {l.link.label} →
-                </a>
-              </>
-            )}
-          </span>
+          <p key={i}>{l}</p>
         ))}
-      </span>
-      <span className="foot">
+      </div>
+      <div className="foot">
         <span>Inferred from what you&apos;ve done here. It never leaves your browser.</span>
         {procPinned && (
           <button
@@ -213,7 +187,7 @@ export default function SkyHome() {
             Clear
           </button>
         )}
-      </span>
+      </div>
     </>
   );
 
@@ -245,22 +219,15 @@ export default function SkyHome() {
           <h1 className="sky-name">David Barron</h1>
           <p className="sky-intro">
             I build systems that understand and reward the{" "}
-            <span className="sky-termwrap" ref={termRef} {...procWrap}>
-              <em className={"sky-term" + (procOn ? " on" : "")} {...procTrigger}>
-                behavioral processes
-              </em>
-              {/* white dropdown hanging off the word itself */}
-              <span
-                className={"sky-pop" + (procOn ? " on" : "")}
-                role="dialog"
-                aria-label="What I've noticed"
-                style={{ left: popPos.left, width: popPos.width, "--caret": `${Math.max(14, -popPos.left + 16)}px` }}
-              >
-                {procOn && <span className="box">{procCard}</span>}
-              </span>
-            </span>{" "}
+            <em className={"sky-term" + (procOn ? " on" : "")} {...proc}>
+              behavioral processes
+            </em>{" "}
             behind learning and exceptional research.
           </p>
+          {/* phones: the card opens inline under the intro instead of in the side column */}
+          <div className={"sky-proc sky-proc-inline" + (procPinned ? " on" : "")} data-proc>
+            {procPinned && procCard}
+          </div>
           {/* Plain links: no preview card. Email copies the address instead of opening a mail app. */}
           <nav className="sky-links" aria-label="Elsewhere" ref={navRef}>
             {LINKS.map((l) =>
@@ -321,6 +288,18 @@ export default function SkyHome() {
         </main>
 
         <aside className="sky-aside" ref={asideRef}>
+          <div
+            className="sky-card sky-proc"
+            data-proc
+            style={{
+              top,
+              opacity: procOn ? 1 : 0,
+              pointerEvents: procPinned ? "auto" : "none",
+              transition: procOn ? "opacity 0.18s ease-out" : "opacity 0.5s ease-in-out",
+            }}
+          >
+            {procOn && procCard}
+          </div>
           <div
             className="sky-card"
             aria-hidden="true"
