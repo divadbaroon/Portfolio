@@ -128,7 +128,8 @@
   align-items: flex-start;
 }
 .sky-main { flex: 0 1 586px; min-width: 0; }
-.sky-name { margin: 0 0 8px; font-size: 34px; line-height: 1.15; font-weight: 500; letter-spacing: -0.01em; }
+/* name in Newsreader (serif); everything else stays Helvetica Neue */
+.sky-name { margin: 0 0 8px; font-family: "Newsreader Variable", Georgia, serif; font-size: 42px; line-height: 1.08; font-weight: 500; letter-spacing: -0.015em; }
 .sky-intro { margin: 0; font-size: 17px; line-height: 1.45; max-width: 600px; }
 .sky-links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; line-height: 22px; }
 .sky-links a { text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
