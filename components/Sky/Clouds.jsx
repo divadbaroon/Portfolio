@@ -135,12 +135,12 @@ export default function Clouds({ speed = 1 }) {
       b.fillStyle = fade(b, h, sharpMask);
       b.fillRect(0, 0, w, h);
       ctx.drawImage(buf, 0, 0, w, h);
-      // tint the clouds to the pre-dawn light: cool slate-blue, slightly lighter toward the horizon
+      // tint the clouds a soft light blue to match the cornflower sky
       ctx.globalCompositeOperation = "source-atop";
       const tg = ctx.createLinearGradient(0, 0, 0, h);
-      tg.addColorStop(0, "rgb(92,112,152)");
-      tg.addColorStop(1, "rgb(124,140,172)");
-      ctx.globalAlpha = 0.62;
+      tg.addColorStop(0, "rgb(190,212,244)");
+      tg.addColorStop(1, "rgb(222,234,252)");
+      ctx.globalAlpha = 0.4;
       ctx.fillStyle = tg;
       ctx.fillRect(0, 0, w, h);
       ctx.globalAlpha = 1;
