@@ -4,6 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import Clouds from "./Clouds";
 import { STARS } from "./stars";
 import { PREVIEWS, displayUrl } from "./previews";
+import { initTrace, log, hoverIn, hoverOut, outboundClick, infer, subscribe, clearTrace } from "./trace";
 
 const LINKS = [
   { k: "cv", href: "/david_barron_resume.pdf", label: "CV" },
@@ -41,6 +42,28 @@ export default function SkyHome() {
   const asideRef = useRef(null);
   const navRef = useRef(null);
 
+  // "behavioral processes": a card that reads back what this visitor has done on the page (local only).
+  const [procHover, setProcHover] = useState(false);
+  const [procPinned, setProcPinned] = useState(false);
+  const procOn = procHover || procPinned;
+  const [lines, setLines] = useState([]);
+  const openedAt = useRef(0);
+  useEffect(() => {
+    initTrace();
+  }, []);
+  useEffect(() => {
+    if (!procOn) return;
+    log("proc"); // each time the card is opened
+    const refresh = () => setLines(infer());
+    refresh();
+    const off = subscribe(refresh);
+    const iv = setInterval(refresh, 1000);
+    return () => {
+      off();
+      clearInterval(iv);
+    };
+  }, [procOn]);
+
   // Card top sits just under the underline of the CV / Scholar / GitHub / X / Email row.
   const place = useCallback(() => {
     const a = asideRef.current;
@@ -59,8 +82,9 @@ export default function SkyHome() {
   // Clicking anywhere except a previewable link, the card or the browser window hides the card.
   useEffect(() => {
     const onDown = (e) => {
-      if (e.target.closest && e.target.closest("[data-pv], .sky-card, .sky-overlay")) return;
+      if (e.target.closest && e.target.closest("[data-pv], [data-proc], .sky-card, .sky-overlay")) return;
       setVisible(false);
+      setProcPinned(false);
     };
     document.addEventListener("mousedown", onDown);
     return () => document.removeEventListener("mousedown", onDown);
@@ -69,7 +93,7 @@ export default function SkyHome() {
   // Esc closes the browser window; the page behind doesn't scroll while it's open.
   useEffect(() => {
     if (!open) return;
-    const onKey = (e) => e.key === "Escape" && setOpen(null);
+    const onKey = (e) => e.key === "Escape" && closeWindow();
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -84,6 +108,8 @@ export default function SkyHome() {
   const show = (k) => {
     setActive(k);
     setVisible(true);
+    setProcHover(false);
+    setProcPinned(false);
   };
   const hide = () => setVisible(false);
   // Embeddable items (our pages, the paper PDF, the talk) open in the in-page browser window;
@@ -92,12 +118,19 @@ export default function SkyHome() {
     if (!PREVIEWS[k].live || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     setVisible(false);
+    openedAt.current = Date.now();
+    log("open", k);
     setOpen(k);
+  };
+  const closeWindow = () => {
+    if (open) log("close", open, { d: Date.now() - openedAt.current });
+    setOpen(null);
   };
   const copyEmail = (e) => {
     if (!navigator.clipboard) return; // fall back to the mailto link
     e.preventDefault();
     navigator.clipboard.writeText("dbarron410@vt.edu").then(() => {
+      log("email");
       setCopied(true);
       clearTimeout(copyTimer.current);
       copyTimer.current = setTimeout(() => setCopied(false), 1800);
@@ -105,12 +138,58 @@ export default function SkyHome() {
   };
   const pv = (k) => ({
     "data-pv": k,
-    onMouseEnter: () => show(k),
-    onMouseLeave: hide,
+    onMouseEnter: () => {
+      show(k);
+      hoverIn(k);
+    },
+    onMouseLeave: () => {
+      hide();
+      hoverOut(k);
+    },
     onFocus: () => show(k),
     onBlur: hide,
-    onClick: openLink(k),
+    onClick: (e) => {
+      if (!PREVIEWS[k].live) outboundClick(k);
+      openLink(k)(e);
+    },
   });
+  const proc = {
+    "data-proc": true,
+    role: "button",
+    tabIndex: 0,
+    "aria-expanded": procOn,
+    onMouseEnter: () => {
+      setVisible(false);
+      setProcHover(true);
+    },
+    onMouseLeave: () => setProcHover(false),
+    onClick: () => setProcPinned((v) => !v),
+    onKeyDown: (e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), setProcPinned((v) => !v)),
+  };
+  const procCard = (
+    <>
+      <div className="label">What I&apos;ve noticed</div>
+      <div className="lines" aria-live="polite">
+        {lines.map((l, i) => (
+          <p key={i}>{l}</p>
+        ))}
+      </div>
+      <div className="foot">
+        <span>Inferred from what you&apos;ve done here. It never leaves your browser.</span>
+        {procPinned && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              clearTrace();
+            }}
+          >
+            Clear
+          </button>
+        )}
+      </div>
+    </>
+  );
 
   return (
     <div className="sky-root">
@@ -140,9 +219,15 @@ export default function SkyHome() {
           <h1 className="sky-name">David Barron</h1>
           <p className="sky-intro">
             I build systems that understand and reward the{" "}
-            <em className="sky-term">behavioral processes</em>{" "}
+            <em className={"sky-term" + (procOn ? " on" : "")} {...proc}>
+              behavioral processes
+            </em>{" "}
             behind learning and exceptional research.
           </p>
+          {/* phones: the card opens inline under the intro instead of in the side column */}
+          <div className={"sky-proc sky-proc-inline" + (procPinned ? " on" : "")} data-proc>
+            {procPinned && procCard}
+          </div>
           {/* Plain links: no preview card. Email copies the address instead of opening a mail app. */}
           <nav className="sky-links" aria-label="Elsewhere" ref={navRef}>
             {LINKS.map((l) =>
@@ -156,7 +241,7 @@ export default function SkyHome() {
                   </span>
                 </span>
               ) : (
-                <a key={l.k} href={l.href} {...newTab(l.href)}>
+                <a key={l.k} href={l.href} {...newTab(l.href)} onClick={() => outboundClick(l.k)}>
                   {l.label}
                 </a>
               )
@@ -202,9 +287,22 @@ export default function SkyHome() {
           </section>
         </main>
 
-        <aside className="sky-aside" aria-hidden="true" ref={asideRef}>
+        <aside className="sky-aside" ref={asideRef}>
+          <div
+            className="sky-card sky-proc"
+            data-proc
+            style={{
+              top,
+              opacity: procOn ? 1 : 0,
+              pointerEvents: procPinned ? "auto" : "none",
+              transition: procOn ? "opacity 0.18s ease-out" : "opacity 0.5s ease-in-out",
+            }}
+          >
+            {procOn && procCard}
+          </div>
           <div
             className="sky-card"
+            aria-hidden="true"
             // quick fade in, slower fade out so it doesn't blink away
             style={{
               top,
@@ -249,7 +347,7 @@ export default function SkyHome() {
         </aside>
       </div>
 
-      {open && <BrowserWindow k={open} onClose={() => setOpen(null)} />}
+      {open && <BrowserWindow k={open} onClose={closeWindow} />}
     </div>
   );
 }
