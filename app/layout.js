@@ -1,4 +1,7 @@
 import "./globals.css";
+import { GeistSans } from "geist/font/sans";
+import "@fontsource-variable/newsreader/opsz.css";
+import "@fontsource-variable/newsreader/opsz-italic.css";
 import Theming from "@/components/providers/Theme";
 
 export const metadata = {
@@ -8,7 +11,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={GeistSans.variable}>
       <body className="bg-[#171717]">
         <Theming>
           {children}
