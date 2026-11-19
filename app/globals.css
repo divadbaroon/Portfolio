@@ -127,10 +127,12 @@
   gap: 56px 72px;
   align-items: flex-start;
 }
-.sky-main { flex: 0 1 586px; min-width: 0; }
+.sky-main { flex: 0 1 700px; min-width: 0; }
+/* desktop: keep the preview column beside the text (the intro wraps, balanced, before the column drops below) */
+@media (min-width: 1000px) { .sky-wrap { flex-wrap: nowrap; } }
 /* name in Newsreader (serif); everything else stays Helvetica Neue */
 .sky-name { margin: 0 0 8px; font-family: "Newsreader Variable", Georgia, serif; font-size: 42px; line-height: 1.08; font-weight: 500; letter-spacing: -0.015em; }
-.sky-intro { margin: 0; font-size: 17px; line-height: 1.45; max-width: 600px; }
+.sky-intro { margin: 0; font-size: 17px; line-height: 1.45; max-width: 700px; text-wrap: balance; }
 .sky-links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; line-height: 22px; }
 .sky-links a { text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.5); }
 .sky-links a:hover { border-bottom-color: #ffffff; }
@@ -166,8 +168,8 @@
 .sky-recent a.sub:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 
 /* preview card */
-.sky-aside { flex: 1 1 300px; align-self: stretch; position: relative; min-height: 1px; }
-.sky-card { position: absolute; left: -136px; width: calc(100% + 136px); transition: opacity 0.2s ease; }
+.sky-aside { flex: 1 1 260px; align-self: stretch; position: relative; min-height: 1px; }
+.sky-card { position: absolute; left: -250px; width: calc(100% + 250px); transition: opacity 0.2s ease; }
 .sky-card.expandable { cursor: zoom-in; }
 .sky-card.clickable { cursor: pointer; }
 .sky-frame {
