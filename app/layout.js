@@ -1,5 +1,4 @@
 import "./globals.css";
-import "@fontsource-variable/newsreader/opsz.css";
 import Theming from "@/components/providers/Theme";
 
 export const metadata = {
